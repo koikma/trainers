@@ -1,1 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Elite Trainers | Meet Our Fitness Coaches</title>
+  <!-- Google Fonts + simple reset & modern styling -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 (free icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(145deg, #f9fafc 0%, #eef2f5 100%);
+      color: #1a2c3e;
+      line-height: 1.4;
+    }
+
+    /* container */
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 3.5rem;
+    }
+
+    /* header section */
+    .header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(0, 112, 112, 0.12);
+      color: #1e6f5c;
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.5px;
+      padding: 0.35rem 1rem;
+      border-radius: 40px;
+      margin-bottom: 1rem;
+      backdrop-filter: blur(2px);
+    }
+
+    .header h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #1f3e48, #2c7a6e);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+    }
+
+    .subhead {
+      font-size: 1.2rem;
+      color: #4a627a;
+      max-width: 680px;
+      margin: 0 auto;
+      font-weight: 400;
+    }
+
+    /* trainers grid - responsive 8 profiles */
+    .trainers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 2rem 1.8rem;
+      margin-top: 1rem;
+    }
+
+    /* card style */
+    .trainer-card {
+      background: #ffffff;
+      border-radius: 2rem;
+      overflow: hidden;
+      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.02);
+      transition: transform 0.25s ease, box-shadow 0.3s ease;
+      backdrop-filter: blur(0px);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .trainer-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 28px 36px -18px rgba(0, 32, 32, 0.2);
+    }
+
+    /* image area */
+    .card-img {
+      position: relative;
+      background: linear-gradient(125deg, #cbdde6, #d9e4ea);
+      height: 270px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    /* unique avatar / placeholder illustrations + icons */
+    .trainer-avatar {
+      width: 130px;
+      height: 130px;
+      background: #fff1e0;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      border: 4px solid rgba(255,255,240,0.9);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      transition: all 0.2s;
+    }
+
+    .trainer-avatar i {
+      font-size: 4.2rem;
+      color: #2c5f5a;
+    }
+
+    /* customized background tints for each trainer (optional variety) */
+    .card-img.bg1 { background: linear-gradient(145deg, #ffe6d5, #ffcdb0); }
+    .card-img.bg2 { background: linear-gradient(145deg, #d4f1f9, #bde0fe); }
+    .card-img.bg3 { background: linear-gradient(145deg, #e0f2e9, #c8e6df); }
+    .card-img.bg4 { background: linear-gradient(145deg, #fbe9f0, #f8dbe8); }
+    .card-img.bg5 { background: linear-gradient(145deg, #e5eaf5, #cdd9ff); }
+    .card-img.bg6 { background: linear-gradient(145deg, #ffe2c8, #fed0aa); }
+    .card-img.bg7 { background: linear-gradient(145deg, #d9f0ec, #c2e3e0); }
+    .card-img.bg8 { background: linear-gradient(145deg, #f3e3cf, #edd7bc); }
+
+    /* info section */
+    .card-info {
+      padding: 1.25rem 1.3rem 1.6rem;
+      text-align: center;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .trainer-name {
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: #1e2f3a;
+      margin-bottom: 0.25rem;
+      letter-spacing: -0.3px;
+    }
+
+    .trainer-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #2c7a6e;
+      background: #e6f4f1;
+      display: inline-block;
+      padding: 0.2rem 0.8rem;
+      border-radius: 30px;
+      margin: 0.6rem auto 0.8rem auto;
+    }
+
+    .trainer-bio {
+      font-size: 0.88rem;
+      color: #435c6e;
+      margin: 0.5rem 0 1rem;
+      line-height: 1.45;
+      flex: 1;
+    }
+
+    /* specialties as chips */
+    .specialties {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.45rem;
+      margin: 0.5rem 0 1.2rem;
+    }
+
+    .specialty-tag {
+      background: #f1f5f9;
+      color: #2c5f5a;
+      font-size: 0.7rem;
+      font-weight: 500;
+      padding: 0.3rem 0.75rem;
+      border-radius: 24px;
+      letter-spacing: 0.2px;
+    }
+
+    /* social / contact row */
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 0.5rem;
+      border-top: 1px solid #eef2f5;
+      padding-top: 1rem;
+    }
+
+    .social-links a {
+      color: #7e95aa;
+      font-size: 1.15rem;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .social-links a:hover {
+      color: #2c7a6e;
+      transform: scale(1.1);
+    }
+
+    /* footer */
+    .footer-note {
+      text-align: center;
+      margin-top: 4rem;
+      font-size: 0.85rem;
+      color: #6a7f8f;
+      border-top: 1px solid #dce5ec;
+      padding-top: 2rem;
+    }
+
+    @media (max-width: 680px) {
+      .container {
+        padding: 1.5rem;
+      }
+      .header h1 {
+        font-size: 2rem;
+      }
+      .trainers-grid {
+        gap: 1.5rem;
+      }
+      .card-img {
+        height: 230px;
+      }
+      .trainer-avatar {
+        width: 110px;
+        height: 110px;
+      }
+      .trainer-avatar i {
+        font-size: 3.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <div class="badge"><i class="fas fa-dumbbell" style="margin-right: 6px;"></i> world-class coaches</div>
+    <h1>Meet Our Elite Trainers</h1>
+    <p class="subhead">Handpicked fitness experts — from strength to mindfulness, each coach brings powerful energy and real results.</p>
+  </div>
+
+  <div class="trainers-grid">
+    <!-- Trainer 1 - Alex Morgan / Strength & HIIT -->
+    <div class="trainer-card">
+      <div class="card-img bg1">
+        <div class="trainer-avatar">
+          <i class="fas fa-user-graduate"></i>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="trainer-name">Alex Morgan</div>
+        <div class="trainer-title">🏋️ Head Strength Coach</div>
+        <div class="trainer-bio">10+ years of elite athletic training. Former powerlifter, obsessed with functional strength & core stability.</div>
+        <div class="specialties">
+          <span class="specialty-tag">Powerlifting</span>
+          <span class="specialty-tag">HIIT</span>
+          <span class="specialty-tag">Kettlebell</span>
+        </div>
+        <div class="social-links">
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trainer 2 - Maya Chen / Yoga & Mobility -->
+    <div class="trainer-card">
+      <div class="card-img bg2">
+        <div class="trainer-avatar">
+          <i class="fas fa-peace"></i>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="trainer-name">Maya Chen</div>
+        <div class="trainer-title">🧘 Yoga & Mindfulness</div>
+        <div class="trainer-bio">E-RYT 500, specializing in vinyasa flow, breathwork, and injury prevention. Helps athletes find balance.</div>
+        <div class="specialties">
+          <span class="specialty-tag">Vinyasa</span>
+          <span class="specialty-tag">Meditation</span>
+          <span class="specialty-tag">Mobility</span>
+        </div>
+        <div class="social-links">
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trainer 3 - David Okafor / Calisthenics & Bodyweight -->
+    <div class="trainer-card">
+      <div class="card-img bg3">
+        <div class="trainer-avatar">
+          <i class="fas fa-hand-fist"></i>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="trainer-name">David Okafor</div>
+        <div class="trainer-title">💪 Calisthenics Pro</div>
+        <div class="trainer-bio">Street workout champion, teaching advanced body control & muscle-ups. No gym? No problem.</div>
+        <div class="specialties">
+          <span class="specialty-tag">Bar Fit</span>
+          <span class="specialty-tag">Bodyweight</span>
+          <span class="specialty-tag">Endurance</span>
+        </div>
+        <div class="social-links">
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="Tiktok"><i class="fab fa-tiktok"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trainer 4 - Sofia Rivera / CrossFit & Cardio -->
+    <div class="trainer-card">
+      <div class="card-img bg4">
+        <div class="trainer-avatar">
+          <i class="fas fa-heartbeat"></i>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="trainer-name">Sofia Rivera</div>
+        <div class="trainer-title">🔥 CrossFit & Metabolic</div>
+        <div class="trainer-bio">CrossFit L3 trainer, regional competitor. She builds explosive power and high-energy communities.</div>
+        <div class="specialties">
+          <span class="specialty-tag">CrossFit</span>
+          <span class="specialty-tag">Conditioning</span>
+          <span class="specialty-tag">Rowing</span>
+        </div>
+        <div class="social-links">
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trainer 5 - James Liu / Nutrition & Wellness Coach -->
+    <div class="trainer-card">
+      <div class="card-img bg5">
+        <div class="trainer-avatar">
+          <i class="fas fa-apple-alt"></i>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="trainer-name">James Liu</div>
+        <div class="trainer-title">🥑 Nutrition & Health</div>
+        <div class="trainer-bio">Precision Nutrition certified, expert in metabolic health and sustainable eating habits.</div>
+        <div class="specialties">
+          <span class="specialty-tag">Meal Planning</span>
+          <span class="specialty-tag">Lifestyle</span>
+          <span class="specialty-tag">Recovery</span>
+        </div>
+        <div class="social-links">
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trainer 6 - Elena Voss / Pilates & Core -->
+    <div class="trainer-card">
+      <div class="card-img bg6">
+        <div class="trainer-avatar">
+          <i class="fas fa-spa"></i>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="trainer-name">Elena Voss</div>
+        <div class="trainer-title">✨ Pilates & Posture</div>
+        <div class="trainer-bio">Classical & contemporary Pilates instructor, helping clients build long, lean muscles and back health.</div>
+        <div class="specialties">
+          <span class="specialty-tag">Reformer</span>
+          <span class="specialty-tag">Mat Pilates</span>
+          <span class="specialty-tag">Core</span>
+        </div>
+        <div class="social-links">
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trainer 7 - Marcus Webb / Boxing & Striking -->
+    <div class="trainer-card">
+      <div class="card-img bg7">
+        <div class="trainer-avatar">
+          <i class="fas fa-fist-raised"></i>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="trainer-name">Marcus Webb</div>
+        <div class="trainer-title">🥊 Boxing & MMA Conditioning</div>
+        <div class="trainer-bio">Former amateur boxer, 8 years of coaching — sharp footwork, defensive drills, & bag work.</div>
+        <div class="specialties">
+          <span class="specialty-tag">Heavy Bag</span>
+          <span class="specialty-tag">Speed & Agility</span>
+          <span class="specialty-tag">Pad Work</span>
+        </div>
+        <div class="social-links">
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trainer 8 - Priya Kapoor / Functional & Senior Fitness -->
+    <div class="trainer-card">
+      <div class="card-img bg8">
+        <div class="trainer-avatar">
+          <i class="fas fa-hiking"></i>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="trainer-name">Priya Kapoor</div>
+        <div class="trainer-title">🌿 Functional & Longevity</div>
+        <div class="trainer-bio">NASM certified, focus on active aging, joint mobility, and daily movement patterns for all ages.</div>
+        <div class="specialties">
+          <span class="specialty-tag">Active Aging</span>
+          <span class="specialty-tag">Balance</span>
+          <span class="specialty-tag">Resistance Bands</span>
+        </div>
+        <div class="social-links">
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-note">
+    <i class="fas fa-chalkboard-user" style="margin-right: 6px;"></i> Book a free intro session with any of our 8 specialists — transform your journey today.
+  </div>
+</div>
+
+<!-- small interactive micro-interaction (optional light console greeting) -->
+<script>
+  // just to add a subtle dynamic interest - console greeting
+  (function() {
+    console.log("%c💪 Meet Our 8 Elite Trainers | Strength • Mobility • Nutrition • Boxing • Yoga • Calisthenics", "color: #2c7a6e; font-size: 14px; font-weight: bold;");
+  })();
+</script>
+</body>
+</html>
