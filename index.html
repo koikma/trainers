@@ -1,457 +1,596 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Elite Trainers | Meet Our Fitness Coaches</title>
-  <!-- Google Fonts + simple reset & modern styling -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
-  <!-- Font Awesome 6 (free icons) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Premier Business Coaches</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background: linear-gradient(145deg, #f9fafc 0%, #eef2f5 100%);
-      color: #1a2c3e;
-      line-height: 1.4;
-    }
+:root {
+  --bg:       #0c0d0f;
+  --surface:  #13151a;
+  --surface2: #1a1d24;
+  --border:   rgba(255,255,255,0.07);
+  --gold:     #c9a84c;
+  --gold2:    #e8c97a;
+  --gold-dim: rgba(201,168,76,0.15);
+  --white:    #f4f0e8;
+  --muted:    #7a7d87;
+  --muted2:   #4e5160;
+}
 
-    /* container */
-    .container {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 2rem 1.5rem 3.5rem;
-    }
+html { scroll-behavior: smooth; }
 
-    /* header section */
-    .header {
-      text-align: center;
-      margin-bottom: 3rem;
-    }
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--bg);
+  color: var(--white);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
 
-    .badge {
-      display: inline-block;
-      background: rgba(0, 112, 112, 0.12);
-      color: #1e6f5c;
-      font-weight: 600;
-      font-size: 0.85rem;
-      letter-spacing: 0.5px;
-      padding: 0.35rem 1rem;
-      border-radius: 40px;
-      margin-bottom: 1rem;
-      backdrop-filter: blur(2px);
-    }
+body::after {
+  content: '';
+  position: fixed; inset: 0;
+  pointer-events: none; z-index: 999;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23g)' opacity='0.055'/%3E%3C/svg%3E");
+}
 
-    .header h1 {
-      font-size: 2.8rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, #1f3e48, #2c7a6e);
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-      letter-spacing: -0.02em;
-      margin-bottom: 0.75rem;
-    }
+/* ── HERO ── */
+.hero {
+  position: relative;
+  padding: 100px 60px 80px;
+  max-width: 1360px;
+  margin: 0 auto;
+}
 
-    .subhead {
-      font-size: 1.2rem;
-      color: #4a627a;
-      max-width: 680px;
-      margin: 0 auto;
-      font-weight: 400;
-    }
+.hero-inner {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
 
-    /* trainers grid - responsive 8 profiles */
-    .trainers-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-      gap: 2rem 1.8rem;
-      margin-top: 1rem;
-    }
+.hero-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1.4rem;
+}
+.hero-label::before {
+  content: '';
+  display: block;
+  width: 32px; height: 1px;
+  background: var(--gold);
+}
 
-    /* card style */
-    .trainer-card {
-      background: #ffffff;
-      border-radius: 2rem;
-      overflow: hidden;
-      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.02);
-      transition: transform 0.25s ease, box-shadow 0.3s ease;
-      backdrop-filter: blur(0px);
-      display: flex;
-      flex-direction: column;
-    }
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.8rem, 6vw, 5.2rem);
+  font-weight: 400;
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  max-width: 620px;
+}
+.hero h1 em { font-style: italic; color: var(--gold2); }
 
-    .trainer-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 28px 36px -18px rgba(0, 32, 32, 0.2);
-    }
+.hero-right {
+  max-width: 340px;
+  padding-top: 3rem;
+}
 
-    /* image area */
-    .card-img {
-      position: relative;
-      background: linear-gradient(125deg, #cbdde6, #d9e4ea);
-      height: 270px;
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      overflow: hidden;
-    }
+.hero-desc {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.8;
+  font-weight: 300;
+  margin-bottom: 2rem;
+}
 
-    /* unique avatar / placeholder illustrations + icons */
-    .trainer-avatar {
-      width: 130px;
-      height: 130px;
-      background: #fff1e0;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 20px;
-      border: 4px solid rgba(255,255,240,0.9);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-      transition: all 0.2s;
-    }
+.hero-stats { display: flex; gap: 2rem; }
 
-    .trainer-avatar i {
-      font-size: 4.2rem;
-      color: #2c5f5a;
-    }
+.hstat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--gold2);
+  display: block;
+  line-height: 1;
+}
+.hstat-label {
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 5px;
+  display: block;
+}
 
-    /* customized background tints for each trainer (optional variety) */
-    .card-img.bg1 { background: linear-gradient(145deg, #ffe6d5, #ffcdb0); }
-    .card-img.bg2 { background: linear-gradient(145deg, #d4f1f9, #bde0fe); }
-    .card-img.bg3 { background: linear-gradient(145deg, #e0f2e9, #c8e6df); }
-    .card-img.bg4 { background: linear-gradient(145deg, #fbe9f0, #f8dbe8); }
-    .card-img.bg5 { background: linear-gradient(145deg, #e5eaf5, #cdd9ff); }
-    .card-img.bg6 { background: linear-gradient(145deg, #ffe2c8, #fed0aa); }
-    .card-img.bg7 { background: linear-gradient(145deg, #d9f0ec, #c2e3e0); }
-    .card-img.bg8 { background: linear-gradient(145deg, #f3e3cf, #edd7bc); }
+.hero-divider {
+  margin-top: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--gold), rgba(201,168,76,0.1) 60%, transparent);
+}
 
-    /* info section */
-    .card-info {
-      padding: 1.25rem 1.3rem 1.6rem;
-      text-align: center;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
+/* ── GRID ── */
+.grid {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 60px 60px 100px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+  gap: 1.5px;
+  background: var(--border);
+}
 
-    .trainer-name {
-      font-size: 1.55rem;
-      font-weight: 700;
-      color: #1e2f3a;
-      margin-bottom: 0.25rem;
-      letter-spacing: -0.3px;
-    }
+/* ── CARD ── */
+.card {
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.4s ease;
+  animation: riseIn 0.7s both;
+}
+.card:nth-child(1){animation-delay:.04s}
+.card:nth-child(2){animation-delay:.10s}
+.card:nth-child(3){animation-delay:.16s}
+.card:nth-child(4){animation-delay:.22s}
+.card:nth-child(5){animation-delay:.28s}
+.card:nth-child(6){animation-delay:.34s}
+.card:nth-child(7){animation-delay:.40s}
+.card:nth-child(8){animation-delay:.46s}
 
-    .trainer-title {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: #2c7a6e;
-      background: #e6f4f1;
-      display: inline-block;
-      padding: 0.2rem 0.8rem;
-      border-radius: 30px;
-      margin: 0.6rem auto 0.8rem auto;
-    }
+@keyframes riseIn {
+  from { opacity:0; transform: translateY(24px); }
+  to   { opacity:1; transform: translateY(0); }
+}
 
-    .trainer-bio {
-      font-size: 0.88rem;
-      color: #435c6e;
-      margin: 0.5rem 0 1rem;
-      line-height: 1.45;
-      flex: 1;
-    }
+.card:hover { background: var(--surface2); }
 
-    /* specialties as chips */
-    .specialties {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.45rem;
-      margin: 0.5rem 0 1.2rem;
-    }
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%; right: 100%;
+  height: 1px;
+  background: var(--gold);
+  transition: left 0.5s ease, right 0.5s ease;
+}
+.card:hover::before { left: 0; right: 0; }
 
-    .specialty-tag {
-      background: #f1f5f9;
-      color: #2c5f5a;
-      font-size: 0.7rem;
-      font-weight: 500;
-      padding: 0.3rem 0.75rem;
-      border-radius: 24px;
-      letter-spacing: 0.2px;
-    }
+/* ── PHOTO AREA ── */
+.photo-wrap {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  background: var(--surface2);
+  overflow: hidden;
+  flex-shrink: 0;
+}
 
-    /* social / contact row */
-    .social-links {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-top: 0.5rem;
-      border-top: 1px solid #eef2f5;
-      padding-top: 1rem;
-    }
+.photo-placeholder {
+  width: 100%; height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
 
-    .social-links a {
-      color: #7e95aa;
-      font-size: 1.15rem;
-      transition: all 0.2s;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-    }
+.photo-placeholder::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 30%, var(--gold-dim) 0%, transparent 70%);
+}
 
-    .social-links a:hover {
-      color: #2c7a6e;
-      transform: scale(1.1);
-    }
+/* Subtle decorative lines */
+.photo-placeholder::after {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
 
-    /* footer */
-    .footer-note {
-      text-align: center;
-      margin-top: 4rem;
-      font-size: 0.85rem;
-      color: #6a7f8f;
-      border-top: 1px solid #dce5ec;
-      padding-top: 2rem;
-    }
+.initials-ring {
+  width: 100px; height: 100px;
+  border-radius: 50%;
+  border: 1px solid rgba(201,168,76,0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+.initials-ring::before {
+  content: '';
+  position: absolute; inset: 6px;
+  border-radius: 50%;
+  border: 1px solid rgba(201,168,76,0.15);
+}
 
-    @media (max-width: 680px) {
-      .container {
-        padding: 1.5rem;
-      }
-      .header h1 {
-        font-size: 2rem;
-      }
-      .trainers-grid {
-        gap: 1.5rem;
-      }
-      .card-img {
-        height: 230px;
-      }
-      .trainer-avatar {
-        width: 110px;
-        height: 110px;
-      }
-      .trainer-avatar i {
-        font-size: 3.4rem;
-      }
-    }
-  </style>
+.initials-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: var(--gold2);
+  letter-spacing: 0.08em;
+  z-index: 1;
+}
+
+.photo-num {
+  position: absolute;
+  top: 14px; left: 16px;
+  font-size: 0.58rem;
+  letter-spacing: 0.22em;
+  color: var(--gold);
+  font-weight: 500;
+  z-index: 2;
+}
+
+.photo-tag {
+  position: absolute;
+  bottom: 14px; right: 14px;
+  font-size: 0.56rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted2);
+  border: 1px solid var(--border);
+  padding: 5px 10px;
+  background: rgba(12,13,15,0.75);
+  backdrop-filter: blur(6px);
+  z-index: 2;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+.photo-tag:hover { color: var(--gold); border-color: rgba(201,168,76,0.4); }
+
+/* ── CARD BODY ── */
+.card-body { padding: 28px 28px 0; flex: 1; }
+
+.coach-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.45rem;
+  font-weight: 500;
+  color: var(--white);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin-bottom: 5px;
+}
+
+.coach-role {
+  font-size: 0.66rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+  margin-bottom: 18px;
+}
+
+.coach-bio {
+  font-size: 0.85rem;
+  color: var(--muted);
+  line-height: 1.75;
+  font-weight: 300;
+  margin-bottom: 20px;
+}
+
+.focus-list {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 28px;
+}
+
+.focus-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+.focus-dot {
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+
+/* ── CARD FOOTER ── */
+.card-footer {
+  margin-top: auto;
+  border-top: 1px solid var(--border);
+  padding: 18px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.coach-credential { font-size: 0.72rem; color: var(--muted2); font-weight: 300; line-height: 1.55; }
+.coach-credential strong { display: block; color: var(--muted); font-weight: 400; font-size: 0.76rem; }
+
+.cta-btn {
+  font-size: 0.61rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid rgba(201,168,76,0.4);
+  padding: 9px 16px;
+  text-decoration: none;
+  background: transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.25s, border-color 0.25s, color 0.25s;
+  flex-shrink: 0;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 500;
+}
+.cta-btn:hover { background: var(--gold); border-color: var(--gold); color: #0c0d0f; }
+
+/* ── FOOTER ── */
+.page-footer {
+  border-top: 1px solid var(--border);
+  padding: 40px 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1360px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.footer-copy { font-size: 0.68rem; color: var(--muted2); letter-spacing: 0.08em; }
+.footer-tagline { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.9rem; color: var(--gold); }
+
+@media (max-width: 720px) {
+  .hero { padding: 60px 24px 50px; }
+  .hero h1 { font-size: 2.4rem; }
+  .hero-right { max-width: 100%; padding-top: 1.5rem; }
+  .grid { padding: 20px 0 60px; }
+  .page-footer { padding: 30px 24px; }
+}
+</style>
 </head>
 <body>
 
-<div class="container">
-  <div class="header">
-    <div class="badge"><i class="fas fa-dumbbell" style="margin-right: 6px;"></i> world-class coaches</div>
-    <h1>Meet Our Elite Trainers</h1>
-    <p class="subhead">Handpicked fitness experts — from strength to mindfulness, each coach brings powerful energy and real results.</p>
-  </div>
-
-  <div class="trainers-grid">
-    <!-- Trainer 1 - Alex Morgan / Strength & HIIT -->
-    <div class="trainer-card">
-      <div class="card-img bg1">
-        <div class="trainer-avatar">
-          <i class="fas fa-user-graduate"></i>
-        </div>
-      </div>
-      <div class="card-info">
-        <div class="trainer-name">Alex Morgan</div>
-        <div class="trainer-title">🏋️ Head Strength Coach</div>
-        <div class="trainer-bio">10+ years of elite athletic training. Former powerlifter, obsessed with functional strength & core stability.</div>
-        <div class="specialties">
-          <span class="specialty-tag">Powerlifting</span>
-          <span class="specialty-tag">HIIT</span>
-          <span class="specialty-tag">Kettlebell</span>
-        </div>
-        <div class="social-links">
-          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        </div>
-      </div>
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-label">Premier Business Coaching</div>
+      <h1>Coaches Who Build<br><em>Exceptional</em> Leaders</h1>
     </div>
-
-    <!-- Trainer 2 - Maya Chen / Yoga & Mobility -->
-    <div class="trainer-card">
-      <div class="card-img bg2">
-        <div class="trainer-avatar">
-          <i class="fas fa-peace"></i>
-        </div>
-      </div>
-      <div class="card-info">
-        <div class="trainer-name">Maya Chen</div>
-        <div class="trainer-title">🧘 Yoga & Mindfulness</div>
-        <div class="trainer-bio">E-RYT 500, specializing in vinyasa flow, breathwork, and injury prevention. Helps athletes find balance.</div>
-        <div class="specialties">
-          <span class="specialty-tag">Vinyasa</span>
-          <span class="specialty-tag">Meditation</span>
-          <span class="specialty-tag">Mobility</span>
-        </div>
-        <div class="social-links">
-          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Trainer 3 - David Okafor / Calisthenics & Bodyweight -->
-    <div class="trainer-card">
-      <div class="card-img bg3">
-        <div class="trainer-avatar">
-          <i class="fas fa-hand-fist"></i>
-        </div>
-      </div>
-      <div class="card-info">
-        <div class="trainer-name">David Okafor</div>
-        <div class="trainer-title">💪 Calisthenics Pro</div>
-        <div class="trainer-bio">Street workout champion, teaching advanced body control & muscle-ups. No gym? No problem.</div>
-        <div class="specialties">
-          <span class="specialty-tag">Bar Fit</span>
-          <span class="specialty-tag">Bodyweight</span>
-          <span class="specialty-tag">Endurance</span>
-        </div>
-        <div class="social-links">
-          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="#" aria-label="Tiktok"><i class="fab fa-tiktok"></i></a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Trainer 4 - Sofia Rivera / CrossFit & Cardio -->
-    <div class="trainer-card">
-      <div class="card-img bg4">
-        <div class="trainer-avatar">
-          <i class="fas fa-heartbeat"></i>
-        </div>
-      </div>
-      <div class="card-info">
-        <div class="trainer-name">Sofia Rivera</div>
-        <div class="trainer-title">🔥 CrossFit & Metabolic</div>
-        <div class="trainer-bio">CrossFit L3 trainer, regional competitor. She builds explosive power and high-energy communities.</div>
-        <div class="specialties">
-          <span class="specialty-tag">CrossFit</span>
-          <span class="specialty-tag">Conditioning</span>
-          <span class="specialty-tag">Rowing</span>
-        </div>
-        <div class="social-links">
-          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Trainer 5 - James Liu / Nutrition & Wellness Coach -->
-    <div class="trainer-card">
-      <div class="card-img bg5">
-        <div class="trainer-avatar">
-          <i class="fas fa-apple-alt"></i>
-        </div>
-      </div>
-      <div class="card-info">
-        <div class="trainer-name">James Liu</div>
-        <div class="trainer-title">🥑 Nutrition & Health</div>
-        <div class="trainer-bio">Precision Nutrition certified, expert in metabolic health and sustainable eating habits.</div>
-        <div class="specialties">
-          <span class="specialty-tag">Meal Planning</span>
-          <span class="specialty-tag">Lifestyle</span>
-          <span class="specialty-tag">Recovery</span>
-        </div>
-        <div class="social-links">
-          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Trainer 6 - Elena Voss / Pilates & Core -->
-    <div class="trainer-card">
-      <div class="card-img bg6">
-        <div class="trainer-avatar">
-          <i class="fas fa-spa"></i>
-        </div>
-      </div>
-      <div class="card-info">
-        <div class="trainer-name">Elena Voss</div>
-        <div class="trainer-title">✨ Pilates & Posture</div>
-        <div class="trainer-bio">Classical & contemporary Pilates instructor, helping clients build long, lean muscles and back health.</div>
-        <div class="specialties">
-          <span class="specialty-tag">Reformer</span>
-          <span class="specialty-tag">Mat Pilates</span>
-          <span class="specialty-tag">Core</span>
-        </div>
-        <div class="social-links">
-          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Trainer 7 - Marcus Webb / Boxing & Striking -->
-    <div class="trainer-card">
-      <div class="card-img bg7">
-        <div class="trainer-avatar">
-          <i class="fas fa-fist-raised"></i>
-        </div>
-      </div>
-      <div class="card-info">
-        <div class="trainer-name">Marcus Webb</div>
-        <div class="trainer-title">🥊 Boxing & MMA Conditioning</div>
-        <div class="trainer-bio">Former amateur boxer, 8 years of coaching — sharp footwork, defensive drills, & bag work.</div>
-        <div class="specialties">
-          <span class="specialty-tag">Heavy Bag</span>
-          <span class="specialty-tag">Speed & Agility</span>
-          <span class="specialty-tag">Pad Work</span>
-        </div>
-        <div class="social-links">
-          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Trainer 8 - Priya Kapoor / Functional & Senior Fitness -->
-    <div class="trainer-card">
-      <div class="card-img bg8">
-        <div class="trainer-avatar">
-          <i class="fas fa-hiking"></i>
-        </div>
-      </div>
-      <div class="card-info">
-        <div class="trainer-name">Priya Kapoor</div>
-        <div class="trainer-title">🌿 Functional & Longevity</div>
-        <div class="trainer-bio">NASM certified, focus on active aging, joint mobility, and daily movement patterns for all ages.</div>
-        <div class="specialties">
-          <span class="specialty-tag">Active Aging</span>
-          <span class="specialty-tag">Balance</span>
-          <span class="specialty-tag">Resistance Bands</span>
-        </div>
-        <div class="social-links">
-          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        </div>
+    <div class="hero-right">
+      <p class="hero-desc">Our faculty represents Malaysia's most accomplished business minds — each bringing boardroom experience, strategic depth, and a proven track record of measurable organisational transformation.</p>
+      <div class="hero-stats">
+        <div><span class="hstat-num">8</span><span class="hstat-label">Master Coaches</span></div>
+        <div><span class="hstat-num">25+</span><span class="hstat-label">Avg. Yrs Exp.</span></div>
+        <div><span class="hstat-num">500+</span><span class="hstat-label">Execs Coached</span></div>
       </div>
     </div>
   </div>
+  <div class="hero-divider"></div>
+</section>
 
-  <div class="footer-note">
-    <i class="fas fa-chalkboard-user" style="margin-right: 6px;"></i> Book a free intro session with any of our 8 specialists — transform your journey today.
-  </div>
-</div>
+<main class="grid">
 
-<!-- small interactive micro-interaction (optional light console greeting) -->
-<script>
-  // just to add a subtle dynamic interest - console greeting
-  (function() {
-    console.log("%c💪 Meet Our 8 Elite Trainers | Strength • Mobility • Nutrition • Boxing • Yoga • Calisthenics", "color: #2c7a6e; font-size: 14px; font-weight: bold;");
-  })();
-</script>
+  <!-- 1 -->
+  <article class="card">
+    <div class="photo-wrap">
+      <div class="photo-placeholder">
+        <div class="initials-ring"><span class="initials-text">DH</span></div>
+      </div>
+      <span class="photo-num">01 / 08</span>
+      <span class="photo-tag">+ Add Photo</span>
+    </div>
+    <div class="card-body">
+      <div class="coach-name">Dato' Hishamuddin Razali</div>
+      <div class="coach-role">Executive Leadership Coach</div>
+      <p class="coach-bio">30 years in C-suite leadership across PETRONAS and Khazanah Nasional. Devotes his expertise to accelerating senior leaders through high-stakes transformation programmes.</p>
+      <div class="focus-list">
+        <div class="focus-item"><span class="focus-dot"></span>Board-Level Strategy</div>
+        <div class="focus-item"><span class="focus-dot"></span>Corporate Governance</div>
+        <div class="focus-item"><span class="focus-dot"></span>Executive Presence</div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="coach-credential"><strong>MBA, Wharton School</strong>ICF Master Certified Coach</div>
+      <a class="cta-btn" href="#">Engage</a>
+    </div>
+  </article>
+
+  <!-- 2 -->
+  <article class="card">
+    <div class="photo-wrap">
+      <div class="photo-placeholder">
+        <div class="initials-ring"><span class="initials-text">FZ</span></div>
+      </div>
+      <span class="photo-num">02 / 08</span>
+      <span class="photo-tag">+ Add Photo</span>
+    </div>
+    <div class="card-body">
+      <div class="coach-name">Fauziah Zainuddin</div>
+      <div class="coach-role">Organisational Culture Strategist</div>
+      <p class="coach-bio">Former CHRO of a Fortune 500 regional subsidiary. Pioneered culture transformation programmes adopted across 14 Asian markets and 6,000+ employees.</p>
+      <div class="focus-list">
+        <div class="focus-item"><span class="focus-dot"></span>Culture & Change Management</div>
+        <div class="focus-item"><span class="focus-dot"></span>Talent Architecture</div>
+        <div class="focus-item"><span class="focus-dot"></span>DEI Leadership</div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="coach-credential"><strong>DBA, Henley Business School</strong>SHRM Senior Certified Professional</div>
+      <a class="cta-btn" href="#">Engage</a>
+    </div>
+  </article>
+
+  <!-- 3 -->
+  <article class="card">
+    <div class="photo-wrap">
+      <div class="photo-placeholder">
+        <div class="initials-ring"><span class="initials-text">RN</span></div>
+      </div>
+      <span class="photo-num">03 / 08</span>
+      <span class="photo-tag">+ Add Photo</span>
+    </div>
+    <div class="card-body">
+      <div class="coach-name">Rizal Norzaini</div>
+      <div class="coach-role">Growth & Revenue Coach</div>
+      <p class="coach-bio">Serial entrepreneur behind three successful exits. Works with founders and MDs to build scalable revenue engines, pitch with precision, and navigate investor relations.</p>
+      <div class="focus-list">
+        <div class="focus-item"><span class="focus-dot"></span>Revenue Scaling</div>
+        <div class="focus-item"><span class="focus-dot"></span>Investor Readiness</div>
+        <div class="focus-item"><span class="focus-dot"></span>Go-To-Market Strategy</div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="coach-credential"><strong>MSc Entrepreneurship, NUS</strong>3× Founder · Angel Investor</div>
+      <a class="cta-btn" href="#">Engage</a>
+    </div>
+  </article>
+
+  <!-- 4 -->
+  <article class="card">
+    <div class="photo-wrap">
+      <div class="photo-placeholder">
+        <div class="initials-ring"><span class="initials-text">SA</span></div>
+      </div>
+      <span class="photo-num">04 / 08</span>
+      <span class="photo-tag">+ Add Photo</span>
+    </div>
+    <div class="card-body">
+      <div class="coach-name">Suraya Azman</div>
+      <div class="coach-role">Strategic Communications Coach</div>
+      <p class="coach-bio">Two decades shaping narratives for Malaysian conglomerates. Coaches executives on media presence, board communications, crisis management, and stakeholder influence.</p>
+      <div class="focus-list">
+        <div class="focus-item"><span class="focus-dot"></span>Executive Storytelling</div>
+        <div class="focus-item"><span class="focus-dot"></span>Crisis Communications</div>
+        <div class="focus-item"><span class="focus-dot"></span>Public Speaking</div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="coach-credential"><strong>MA Comms, University of Leeds</strong>Former VP, Bursa-listed GLC</div>
+      <a class="cta-btn" href="#">Engage</a>
+    </div>
+  </article>
+
+  <!-- 5 -->
+  <article class="card">
+    <div class="photo-wrap">
+      <div class="photo-placeholder">
+        <div class="initials-ring"><span class="initials-text">KI</span></div>
+      </div>
+      <span class="photo-num">05 / 08</span>
+      <span class="photo-tag">+ Add Photo</span>
+    </div>
+    <div class="card-body">
+      <div class="coach-name">Kamaruddin Ismail</div>
+      <div class="coach-role">Financial Leadership Coach</div>
+      <p class="coach-bio">Ex-CFO with 22 years across private equity, banking, and regional M&A. Guides finance leaders through capital strategy, P&L discipline, and board-level readiness.</p>
+      <div class="focus-list">
+        <div class="focus-item"><span class="focus-dot"></span>Capital Strategy</div>
+        <div class="focus-item"><span class="focus-dot"></span>M&A Readiness</div>
+        <div class="focus-item"><span class="focus-dot"></span>CFO Coaching</div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="coach-credential"><strong>CFA Charterholder · FCPA</strong>Ex-CFO, CIMB Group</div>
+      <a class="cta-btn" href="#">Engage</a>
+    </div>
+  </article>
+
+  <!-- 6 -->
+  <article class="card">
+    <div class="photo-wrap">
+      <div class="photo-placeholder">
+        <div class="initials-ring"><span class="initials-text">NR</span></div>
+      </div>
+      <span class="photo-num">06 / 08</span>
+      <span class="photo-tag">+ Add Photo</span>
+    </div>
+    <div class="card-body">
+      <div class="coach-name">Nadia Rashidah</div>
+      <div class="coach-role">High-Performance Mindset Coach</div>
+      <p class="coach-bio">Psychologist-turned-executive coach. Merges cognitive behavioural frameworks with peak performance science to unlock leaders' full mental and strategic potential.</p>
+      <div class="focus-list">
+        <div class="focus-item"><span class="focus-dot"></span>Mindset & Resilience</div>
+        <div class="focus-item"><span class="focus-dot"></span>Decision-Making Under Pressure</div>
+        <div class="focus-item"><span class="focus-dot"></span>Leadership Psychology</div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="coach-credential"><strong>PhD Psychology, UM</strong>ICF Professional Certified Coach</div>
+      <a class="cta-btn" href="#">Engage</a>
+    </div>
+  </article>
+
+  <!-- 7 -->
+  <article class="card">
+    <div class="photo-wrap">
+      <div class="photo-placeholder">
+        <div class="initials-ring"><span class="initials-text">ZA</span></div>
+      </div>
+      <span class="photo-num">07 / 08</span>
+      <span class="photo-tag">+ Add Photo</span>
+    </div>
+    <div class="card-body">
+      <div class="coach-name">Zulaikha Aminuddin</div>
+      <div class="coach-role">Digital Transformation Advisor</div>
+      <p class="coach-bio">Led digital strategy for two of Malaysia's top telcos. Partners with leadership teams to build AI-ready organisations, digital business models, and future-fit operating structures.</p>
+      <div class="focus-list">
+        <div class="focus-item"><span class="focus-dot"></span>Digital Strategy</div>
+        <div class="focus-item"><span class="focus-dot"></span>AI Adoption & Governance</div>
+        <div class="focus-item"><span class="focus-dot"></span>Tech-Business Alignment</div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="coach-credential"><strong>MBA, INSEAD</strong>Ex-CDO, Telekom Malaysia</div>
+      <a class="cta-btn" href="#">Engage</a>
+    </div>
+  </article>
+
+  <!-- 8 -->
+  <article class="card">
+    <div class="photo-wrap">
+      <div class="photo-placeholder">
+        <div class="initials-ring"><span class="initials-text">HB</span></div>
+      </div>
+      <span class="photo-num">08 / 08</span>
+      <span class="photo-tag">+ Add Photo</span>
+    </div>
+    <div class="card-body">
+      <div class="coach-name">Hairul Badri</div>
+      <div class="coach-role">Sales Excellence Coach</div>
+      <p class="coach-bio">Built and led sales teams generating over RM 2 billion in cumulative revenue. Coaches B2B sales leaders, enterprise account teams, and regional commercial directors.</p>
+      <div class="focus-list">
+        <div class="focus-item"><span class="focus-dot"></span>Enterprise Sales Leadership</div>
+        <div class="focus-item"><span class="focus-dot"></span>Key Account Management</div>
+        <div class="focus-item"><span class="focus-dot"></span>Commercial Strategy</div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="coach-credential"><strong>BBA, UiTM · Certified Sales Leader</strong>RM 2B+ Revenue Track Record</div>
+      <a class="cta-btn" href="#">Engage</a>
+    </div>
+  </article>
+
+</main>
+
+<footer class="page-footer">
+  <span class="footer-copy">© 2026 Premier Business Coaching · Kuala Lumpur, Malaysia</span>
+  <span class="footer-tagline">Investing in leaders who move nations.</span>
+</footer>
+
 </body>
 </html>
