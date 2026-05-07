@@ -38,9 +38,6 @@ body {
   overflow-x: hidden;
 }
 
-
-
-/* ── PARTICLE CANVAS ── */
 #particles {
   position: fixed; inset: 0;
   pointer-events: none;
@@ -48,7 +45,6 @@ body {
   opacity: 0.6;
 }
 
-/* ── GRAIN ── */
 body::after {
   content: '';
   position: fixed; inset: 0;
@@ -69,7 +65,6 @@ body::after {
   transition: opacity 0.8s ease, visibility 0.8s ease;
 }
 #loader.gone { opacity: 0; visibility: hidden; }
-
 .loader-logo {
   font-family: 'Playfair Display', serif;
   font-size: 1.1rem;
@@ -77,13 +72,10 @@ body::after {
   color: var(--gold);
   font-weight: 400;
 }
-
 .loader-bar-wrap {
-  width: 200px;
-  height: 1px;
+  width: 200px; height: 1px;
   background: var(--surface2);
   overflow: hidden;
-  position: relative;
 }
 .loader-bar {
   height: 100%;
@@ -91,11 +83,7 @@ body::after {
   width: 0%;
   transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.loader-pct {
-  font-size: 0.65rem;
-  letter-spacing: 0.2em;
-  color: var(--muted);
-}
+.loader-pct { font-size: 0.65rem; letter-spacing: 0.2em; color: var(--muted); }
 
 /* ── HERO ── */
 .hero {
@@ -105,8 +93,6 @@ body::after {
   margin: 0 auto;
   z-index: 2;
 }
-
-/* ambient glow behind hero text */
 .hero::before {
   content: '';
   position: absolute;
@@ -115,7 +101,6 @@ body::after {
   background: radial-gradient(ellipse, var(--navy-glow) 0%, transparent 70%);
   pointer-events: none;
 }
-
 .hero-inner {
   display: flex;
   align-items: flex-start;
@@ -123,7 +108,6 @@ body::after {
   gap: 3rem;
   flex-wrap: wrap;
 }
-
 .hero-left { max-width: 660px; }
 
 .hero-label {
@@ -143,8 +127,7 @@ body::after {
 .hero-label::before {
   content: '';
   display: block;
-  width: 0;
-  height: 1px;
+  width: 0; height: 1px;
   background: linear-gradient(90deg, var(--red), var(--gold));
   animation: growLine 0.8s 0.5s forwards;
 }
@@ -152,7 +135,6 @@ body::after {
 @keyframes slideRight { to { opacity:1; transform: translateX(0); } }
 
 .hero-title-wrap { overflow: hidden; }
-
 .hero h1 {
   font-family: 'Playfair Display', serif;
   font-size: clamp(3rem, 6vw, 5.6rem);
@@ -163,16 +145,8 @@ body::after {
   transform: translateY(100%);
   animation: revealUp 0.9s 0.4s cubic-bezier(0.16,1,0.3,1) forwards;
 }
-.hero h1 .line2 {
-  display: block;
-  animation-delay: 0.55s;
-}
-.hero h1 em {
-  font-style: italic;
-  color: var(--gold2);
-  position: relative;
-}
-/* gold underline on em */
+.hero h1 .line2 { display: block; animation-delay: 0.55s; }
+.hero h1 em { font-style: italic; color: var(--gold2); position: relative; }
 .hero h1 em::after {
   content: '';
   position: absolute;
@@ -204,9 +178,7 @@ body::after {
   border-left: 2px solid var(--red);
   padding-left: 1.2rem;
 }
-
 .hero-stats { display: flex; gap: 2.5rem; }
-
 .hstat { position: relative; }
 .hstat-num {
   font-family: 'Playfair Display', serif;
@@ -224,8 +196,6 @@ body::after {
   margin-top: 6px;
   display: block;
 }
-
-/* animated counter */
 .hstat-num[data-target] { opacity: 0; animation: fadeUp 0.6s 1.4s forwards; }
 
 .hero-divider {
@@ -237,12 +207,10 @@ body::after {
   opacity: 0;
   animation: fadeUp 0.6s 1s forwards;
 }
-
-/* travelling dot on divider */
 .hero-divider::after {
   content: '';
   position: absolute;
-  top: -3px; left: -6px;
+  top: -3px; left: 0;
   width: 6px; height: 6px;
   border-radius: 50%;
   background: var(--gold2);
@@ -266,17 +234,8 @@ body::after {
   z-index: 2;
   position: relative;
 }
-.section-intro-line {
-  flex: 1;
-  height: 0.5px;
-  background: var(--border);
-}
-.section-intro-text {
-  font-size: 0.6rem;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: var(--muted2);
-}
+.section-intro-line { flex: 1; height: 0.5px; background: var(--border); }
+.section-intro-text { font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--muted2); }
 
 /* ── GRID ── */
 .grid {
@@ -303,9 +262,7 @@ body::after {
   transform: translateY(40px);
   will-change: transform;
 }
-.card.visible {
-  animation: cardReveal 0.8s cubic-bezier(0.16,1,0.3,1) forwards;
-}
+.card.visible { animation: cardReveal 0.8s cubic-bezier(0.16,1,0.3,1) forwards; }
 .card:nth-child(2).visible { animation-delay: 0.08s; }
 .card:nth-child(3).visible { animation-delay: 0.16s; }
 .card:nth-child(4).visible { animation-delay: 0.06s; }
@@ -319,13 +276,8 @@ body::after {
   to   { opacity:1; transform: translateY(0) scale(1); }
 }
 
-.card:hover {
-  background: var(--surface2);
-  transform: translateY(-5px);
-  z-index: 10;
-}
+.card:hover { background: var(--surface2); transform: translateY(-5px); z-index: 10; }
 
-/* top sweep line — red to gold */
 .card::before {
   content: '';
   position: absolute;
@@ -337,11 +289,9 @@ body::after {
 }
 .card:hover::before { left: 0; }
 
-/* radial glow on hover */
 .card::after {
   content: '';
-  position: absolute;
-  inset: 0;
+  position: absolute; inset: 0;
   background: radial-gradient(ellipse at 50% 0%, rgba(20,60,140,0.18) 0%, transparent 65%);
   opacity: 0;
   transition: opacity 0.5s ease;
@@ -359,6 +309,16 @@ body::after {
   flex-shrink: 0;
 }
 
+/* Real photo styling */
+.photo-wrap img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16,1,0.3,1);
+}
+.card:hover .photo-wrap img { transform: scale(1.04); }
+
 .photo-placeholder {
   width: 100%; height: 100%;
   display: flex;
@@ -366,8 +326,6 @@ body::after {
   justify-content: center;
   position: relative;
 }
-
-/* animated grid lines */
 .photo-placeholder::before {
   content: '';
   position: absolute; inset: 0;
@@ -382,18 +340,13 @@ body::after {
   to   { background-position: 36px 36px; }
 }
 
-/* radial navy glow */
 .photo-glow {
   position: absolute; inset: 0;
   background: radial-gradient(ellipse at 50% 35%, rgba(17,60,130,0.55) 0%, transparent 70%);
   animation: pulseGlow 4s ease-in-out infinite;
 }
-@keyframes pulseGlow {
-  0%,100% { opacity: 0.8; }
-  50%      { opacity: 1; }
-}
+@keyframes pulseGlow { 0%,100% { opacity:0.8; } 50% { opacity:1; } }
 
-/* initials ring — spins slowly */
 .initials-ring {
   width: 108px; height: 108px;
   border-radius: 50%;
@@ -405,10 +358,7 @@ body::after {
   z-index: 2;
   transition: border-color 0.4s, transform 0.6s cubic-bezier(0.16,1,0.3,1);
 }
-.card:hover .initials-ring {
-  border-color: rgba(201,168,76,0.7);
-  transform: scale(1.08);
-}
+.card:hover .initials-ring { border-color: rgba(201,168,76,0.7); transform: scale(1.08); }
 .initials-ring::before {
   content: '';
   position: absolute; inset: 8px;
@@ -416,10 +366,7 @@ body::after {
   border: 1px solid rgba(201,168,76,0.12);
   animation: spinRing 12s linear infinite;
 }
-@keyframes spinRing {
-  to { transform: rotate(360deg); }
-}
-/* dashed orbit */
+@keyframes spinRing { to { transform: rotate(360deg); } }
 .initials-ring::after {
   content: '';
   position: absolute; inset: -14px;
@@ -427,7 +374,6 @@ body::after {
   border: 1px dashed rgba(184,49,31,0.2);
   animation: spinRing 20s linear infinite reverse;
 }
-
 .initials-text {
   font-family: 'Playfair Display', serif;
   font-size: 1.85rem;
@@ -439,12 +385,8 @@ body::after {
 }
 .card:hover .initials-text { color: var(--gold3); }
 
-/* red L-bracket corner */
-.corner-accent {
-  position: absolute;
-  bottom: 0; left: 0;
-  z-index: 3;
-}
+/* corner accents */
+.corner-accent { position: absolute; bottom: 0; left: 0; z-index: 3; }
 .corner-accent::before {
   content: '';
   position: absolute;
@@ -459,13 +401,7 @@ body::after {
   width: 2px; height: 52px;
   background: linear-gradient(to top, var(--red), transparent);
 }
-
-/* top-right gold bracket */
-.corner-accent-gold {
-  position: absolute;
-  top: 0; right: 0;
-  z-index: 3;
-}
+.corner-accent-gold { position: absolute; top: 0; right: 0; z-index: 3; }
 .corner-accent-gold::before {
   content: '';
   position: absolute;
@@ -489,8 +425,8 @@ body::after {
   color: var(--gold);
   font-weight: 500;
   z-index: 4;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.8);
 }
-
 .photo-tag {
   position: absolute;
   bottom: 14px; right: 14px;
@@ -506,11 +442,7 @@ body::after {
   cursor: pointer;
   transition: color 0.25s, border-color 0.25s, background 0.25s;
 }
-.photo-tag:hover {
-  color: var(--gold);
-  border-color: rgba(201,168,76,0.4);
-  background: rgba(201,168,76,0.06);
-}
+.photo-tag:hover { color: var(--gold); border-color: rgba(201,168,76,0.4); background: rgba(201,168,76,0.06); }
 
 /* ── CARD BODY ── */
 .card-body { padding: 28px 28px 0; flex: 1; }
@@ -538,12 +470,7 @@ body::after {
   align-items: center;
   gap: 8px;
 }
-.coach-role::before {
-  content: '';
-  display: block;
-  width: 16px; height: 1px;
-  background: var(--red);
-}
+.coach-role::before { content: ''; display: block; width: 16px; height: 1px; background: var(--red); }
 
 .coach-bio {
   font-size: 0.84rem;
@@ -553,13 +480,7 @@ body::after {
   margin-bottom: 22px;
 }
 
-.focus-list {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-bottom: 28px;
-}
-
+.focus-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 28px; }
 .focus-item {
   display: flex;
   align-items: center;
@@ -567,19 +488,13 @@ body::after {
   font-size: 0.78rem;
   color: var(--muted);
   transition: color 0.3s, transform 0.3s;
-  transform: translateX(0);
 }
 .card:hover .focus-item { color: #8899bb; }
 .card:hover .focus-item:nth-child(1) { transform: translateX(4px); transition-delay: 0.05s; }
 .card:hover .focus-item:nth-child(2) { transform: translateX(4px); transition-delay: 0.1s; }
 .card:hover .focus-item:nth-child(3) { transform: translateX(4px); transition-delay: 0.15s; }
 
-.focus-dot {
-  width: 5px; height: 5px;
-  border-radius: 50%;
-  flex-shrink: 0;
-  transition: transform 0.3s;
-}
+.focus-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; transition: transform 0.3s; }
 .card:hover .focus-dot { transform: scale(1.4); }
 .focus-item:nth-child(1) .focus-dot { background: var(--red2); }
 .focus-item:nth-child(2) .focus-dot { background: var(--gold); }
@@ -597,8 +512,6 @@ body::after {
   position: relative;
   overflow: hidden;
 }
-
-/* footer red underline sweeps on hover */
 .card-footer::before {
   content: '';
   position: absolute;
@@ -609,18 +522,8 @@ body::after {
 }
 .card:hover .card-footer::before { left: 0; }
 
-.coach-credential {
-  font-size: 0.71rem;
-  color: var(--muted2);
-  font-weight: 300;
-  line-height: 1.6;
-}
-.coach-credential strong {
-  display: block;
-  color: var(--muted);
-  font-weight: 400;
-  font-size: 0.76rem;
-}
+.coach-credential { font-size: 0.71rem; color: var(--muted2); font-weight: 300; line-height: 1.6; }
+.coach-credential strong { display: block; color: var(--muted); font-weight: 400; font-size: 0.76rem; }
 
 .cta-btn {
   font-size: 0.6rem;
@@ -633,7 +536,7 @@ body::after {
   background: transparent;
   cursor: pointer;
   white-space: nowrap;
-  transition: background 0.3s, border-color 0.3s, color 0.3s, box-shadow 0.3s;
+  transition: border-color 0.3s, color 0.3s, box-shadow 0.3s;
   flex-shrink: 0;
   font-family: 'Outfit', sans-serif;
   font-weight: 500;
@@ -642,19 +545,14 @@ body::after {
 }
 .cta-btn::before {
   content: '';
-  position: absolute;
-  inset: 0;
+  position: absolute; inset: 0;
   background: linear-gradient(135deg, var(--red), var(--gold));
   transform: translateX(-105%);
   transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
   z-index: 0;
 }
 .cta-btn span { position: relative; z-index: 1; }
-.cta-btn:hover {
-  border-color: transparent;
-  color: #fff;
-  box-shadow: 0 0 24px rgba(201,168,76,0.25);
-}
+.cta-btn:hover { border-color: transparent; color: #fff; box-shadow: 0 0 24px rgba(201,168,76,0.25); }
 .cta-btn:hover::before { transform: translateX(0); }
 
 /* ── FOOTER ── */
@@ -684,15 +582,9 @@ body::after {
   font-style: italic;
   font-size: 0.95rem;
   color: var(--gold);
-  position: relative;
 }
-.footer-tagline::before {
-  content: '— ';
-  color: var(--red);
-  font-style: normal;
-}
+.footer-tagline::before { content: '— '; color: var(--red); font-style: normal; }
 
-/* ── SCROLL PROGRESS ── */
 #progress {
   position: fixed;
   top: 0; left: 0;
@@ -717,14 +609,12 @@ body::after {
 <div id="progress"></div>
 <canvas id="particles"></canvas>
 
-<!-- LOADER -->
 <div id="loader">
-  <div class="loader-logo">PREMIER COACHING</div>
+  <div class="loader-logo">KOIKMA</div>
   <div class="loader-bar-wrap"><div class="loader-bar" id="loaderBar"></div></div>
   <div class="loader-pct" id="loaderPct">0%</div>
 </div>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-inner">
     <div class="hero-left">
@@ -753,12 +643,10 @@ body::after {
 
 <main class="grid">
 
-  <!-- 1 -->
+  <!-- 1 — En Faiz Yatim (photo: faiz.png) -->
   <article class="card">
     <div class="photo-wrap">
-      <img src="/mnt/user-data/uploads/faiz.png"
-           alt="En Faiz Yatim"
-           style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+      <img src="faiz.png" alt="En Faiz Yatim">
       <div class="corner-accent"></div>
       <div class="corner-accent-gold"></div>
       <span class="photo-num">01 / 08</span>
@@ -766,7 +654,7 @@ body::after {
     <div class="card-body">
       <div class="coach-name">En Faiz Yatim</div>
       <div class="coach-role">Digital Transformation Advisor</div>
-      <p class="coach-bio">Two decades shaping digitalization for Malaysian cooperatives. Devotes his expertise to accelerating senior leaders through high-stakes transformation programmes.</p>
+      <p class="coach-bio">Two decades shaping digitalisation for Malaysian cooperatives. Devotes his expertise to accelerating senior leaders through high-stakes transformation programmes.</p>
       <div class="focus-list">
         <div class="focus-item"><span class="focus-dot"></span>Board-Level Strategy</div>
         <div class="focus-item"><span class="focus-dot"></span>Corporate Governance</div>
@@ -978,7 +866,7 @@ body::after {
 </main>
 
 <footer class="page-footer">
-  <span class="footer-copy">© 2026 Premier Business Coaching · Kuala Lumpur, Malaysia</span>
+  <span class="footer-copy">© 2026 KoIKMa Professional Coaching · Kuala Lumpur, Malaysia</span>
   <span class="footer-tagline">Investing in leaders who move nations.</span>
 </footer>
 
@@ -993,13 +881,8 @@ const iv = setInterval(() => {
   if (p > 100) p = 100;
   bar.style.width = p + '%';
   pct.textContent = Math.floor(p) + '%';
-  if (p >= 100) {
-    clearInterval(iv);
-    setTimeout(() => loader.classList.add('gone'), 300);
-  }
+  if (p >= 100) { clearInterval(iv); setTimeout(() => loader.classList.add('gone'), 300); }
 }, 80);
-
-
 
 /* ── SCROLL PROGRESS ── */
 const prog = document.getElementById('progress');
@@ -1011,61 +894,39 @@ window.addEventListener('scroll', () => {
 /* ── PARTICLES ── */
 const canvas = document.getElementById('particles');
 const ctx    = canvas.getContext('2d');
-let W, H, dots = [];
-
-function resize() {
-  W = canvas.width  = window.innerWidth;
-  H = canvas.height = window.innerHeight;
-}
+let W, H;
+const dots   = [];
+function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
 resize();
 window.addEventListener('resize', resize);
-
-const COLORS = [
-  'rgba(201,168,76,',
-  'rgba(184,49,31,',
-  'rgba(30,80,180,'
-];
-
+const COLORS = ['rgba(201,168,76,','rgba(184,49,31,','rgba(30,80,180,'];
 for (let i = 0; i < 70; i++) {
-  dots.push({
-    x: Math.random() * 1400,
-    y: Math.random() * 2400,
-    r: Math.random() * 1.2 + 0.3,
-    vx: (Math.random() - 0.5) * 0.18,
-    vy: (Math.random() - 0.5) * 0.15,
-    c: COLORS[Math.floor(Math.random() * COLORS.length)],
-    o: Math.random() * 0.5 + 0.15
-  });
+  dots.push({ x: Math.random()*1400, y: Math.random()*2400, r: Math.random()*1.2+0.3,
+    vx: (Math.random()-0.5)*0.18, vy: (Math.random()-0.5)*0.15,
+    c: COLORS[Math.floor(Math.random()*COLORS.length)], o: Math.random()*0.5+0.15 });
 }
-
 function drawParticles() {
-  ctx.clearRect(0, 0, W, H);
+  ctx.clearRect(0,0,W,H);
   dots.forEach(d => {
-    d.x += d.vx; d.y += d.vy;
-    if (d.x < 0) d.x = W; if (d.x > W) d.x = 0;
-    if (d.y < 0) d.y = H; if (d.y > H) d.y = 0;
-    ctx.beginPath();
-    ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
-    ctx.fillStyle = d.c + d.o + ')';
-    ctx.fill();
+    d.x+=d.vx; d.y+=d.vy;
+    if(d.x<0)d.x=W; if(d.x>W)d.x=0; if(d.y<0)d.y=H; if(d.y>H)d.y=0;
+    ctx.beginPath(); ctx.arc(d.x,d.y,d.r,0,Math.PI*2);
+    ctx.fillStyle=d.c+d.o+')'; ctx.fill();
   });
   requestAnimationFrame(drawParticles);
 }
 drawParticles();
 
-/* ── SCROLL REVEAL FOR CARDS ── */
+/* ── SCROLL REVEAL ── */
 const cards = document.querySelectorAll('.card');
-const io = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
-  });
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } });
 }, { threshold: 0.1 });
 cards.forEach(c => io.observe(c));
 
-/* ── COUNTER ANIMATION ── */
+/* ── COUNTERS ── */
 function animCounter(el) {
   const target = +el.dataset.target;
-  const suffix = target >= 25 ? (target === 25 ? '+' : '+') : '';
   let current = 0;
   const step = target / 40;
   const t = setInterval(() => {
@@ -1076,9 +937,7 @@ function animCounter(el) {
 }
 const counters = document.querySelectorAll('.hstat-num[data-target]');
 const cio = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) { animCounter(e.target); cio.unobserve(e.target); }
-  });
+  entries.forEach(e => { if(e.isIntersecting){ animCounter(e.target); cio.unobserve(e.target); } });
 }, { threshold: 0.5 });
 counters.forEach(c => cio.observe(c));
 </script>
