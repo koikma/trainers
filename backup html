@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KoIKMa Professional Coaches — Malaysia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+:root {
+  --bg:        #060c1a;
+  --surface:   #0b1428;
+  --surface2:  #101e38;
+  --surface3:  #152444;
+  --border:    rgba(255,255,255,0.06);
+  --gold:      #c9a84c;
+  --gold2:     #e8c97a;
+  --gold3:     #f5dfa0;
+  --gold-glow: rgba(201,168,76,0.2);
+  --red:       #b8311f;
+  --red2:      #e04030;
+  --red-glow:  rgba(184,49,31,0.25);
+  --white:     #eef2fa;
+  --muted:     #6b7799;
+  --muted2:    #3d4a6a;
+  --navy-glow: rgba(20,60,140,0.4);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--bg);
+  color: var(--white);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#particles {
+  position: fixed; inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.6;
+}
+
+body::after {
+  content: '';
+  position: fixed; inset: 0;
+  pointer-events: none; z-index: 1000;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23g)' opacity='0.06'/%3E%3C/svg%3E");
+}
+
+/* ── LOADING SCREEN ── */
+#loader {
+  position: fixed; inset: 0;
+  background: var(--bg);
+  z-index: 9000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+#loader.gone { opacity: 0; visibility: hidden; }
+.loader-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.25em;
+  color: var(--gold);
+  font-weight: 400;
+}
+.loader-bar-wrap {
+  width: 200px; height: 1px;
+  background: var(--surface2);
+  overflow: hidden;
+}
+.loader-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--red), var(--gold));
+  width: 0%;
+  transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.loader-pct { font-size: 0.65rem; letter-spacing: 0.2em; color: var(--muted); }
+
+/* ── HERO ── */
+.hero {
+  position: relative;
+  padding: 120px 70px 90px;
+  max-width: 1400px;
+  margin: 0 auto;
+  z-index: 2;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 60px; left: 40px;
+  width: 500px; height: 400px;
+  background: radial-gradient(ellipse, var(--navy-glow) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-inner {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+.hero-left { max-width: 660px; }
+
+.hero-label {
+  font-size: 0.63rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 1.6rem;
+  opacity: 0;
+  transform: translateX(-20px);
+  animation: slideRight 0.7s 0.2s forwards;
+}
+.hero-label::before {
+  content: '';
+  display: block;
+  width: 0; height: 1px;
+  background: linear-gradient(90deg, var(--red), var(--gold));
+  animation: growLine 0.8s 0.5s forwards;
+}
+@keyframes growLine { to { width: 40px; } }
+@keyframes slideRight { to { opacity:1; transform: translateX(0); } }
+
+.hero-title-wrap { overflow: hidden; }
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 6vw, 5.6rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  transform: translateY(100%);
+  animation: revealUp 0.9s 0.4s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+.hero h1 .line2 { display: block; animation-delay: 0.55s; }
+.hero h1 em { font-style: italic; color: var(--gold2); position: relative; }
+.hero h1 em::after {
+  content: '';
+  position: absolute;
+  bottom: 4px; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, var(--red), var(--gold2));
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: scaleIn 0.7s 1.3s forwards;
+}
+@keyframes scaleIn { to { transform: scaleX(1); } }
+@keyframes revealUp { to { transform: translateY(0); } }
+
+.hero-right {
+  max-width: 360px;
+  padding-top: 3.5rem;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 0.8s 0.9s forwards;
+}
+@keyframes fadeUp { to { opacity:1; transform: translateY(0); } }
+
+.hero-desc {
+  font-size: 0.88rem;
+  color: var(--muted);
+  line-height: 1.85;
+  font-weight: 300;
+  margin-bottom: 2.5rem;
+  border-left: 2px solid var(--red);
+  padding-left: 1.2rem;
+}
+.hero-stats { display: flex; gap: 2.5rem; }
+.hstat { position: relative; }
+.hstat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  font-weight: 500;
+  color: var(--gold2);
+  display: block;
+  line-height: 1;
+}
+.hstat-label {
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 6px;
+  display: block;
+}
+.hstat-num[data-target] { opacity: 0; animation: fadeUp 0.6s 1.4s forwards; }
+
+.hero-divider {
+  margin-top: 70px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--red2), var(--gold) 45%, rgba(201,168,76,0.08) 80%, transparent);
+  position: relative;
+  overflow: visible;
+  opacity: 0;
+  animation: fadeUp 0.6s 1s forwards;
+}
+.hero-divider::after {
+  content: '';
+  position: absolute;
+  top: -3px; left: 0;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--gold2);
+  box-shadow: 0 0 12px var(--gold-glow);
+  animation: travelDot 3s 1.5s ease-in-out infinite;
+}
+@keyframes travelDot {
+  0%   { left: 0%; opacity: 1; }
+  80%  { left: 90%; opacity: 1; }
+  100% { left: 95%; opacity: 0; }
+}
+
+/* ── SECTION LABEL ── */
+.section-intro {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 70px 40px;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  z-index: 2;
+  position: relative;
+}
+.section-intro-line { flex: 1; height: 0.5px; background: var(--border); }
+.section-intro-text { font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--muted2); }
+
+/* ── GRID ── */
+.grid {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 70px 120px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2px;
+  background: linear-gradient(135deg, rgba(184,49,31,0.1), rgba(20,50,110,0.15));
+  position: relative;
+  z-index: 2;
+}
+
+/* ── CARD ── */
+.card {
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.5s ease, transform 0.4s cubic-bezier(0.16,1,0.3,1);
+  opacity: 0;
+  transform: translateY(40px);
+  will-change: transform;
+}
+.card.visible { animation: cardReveal 0.8s cubic-bezier(0.16,1,0.3,1) forwards; }
+.card:nth-child(2).visible { animation-delay: 0.08s; }
+.card:nth-child(3).visible { animation-delay: 0.16s; }
+.card:nth-child(4).visible { animation-delay: 0.06s; }
+.card:nth-child(5).visible { animation-delay: 0.14s; }
+.card:nth-child(6).visible { animation-delay: 0.22s; }
+.card:nth-child(7).visible { animation-delay: 0.10s; }
+.card:nth-child(8).visible { animation-delay: 0.18s; }
+
+@keyframes cardReveal {
+  from { opacity:0; transform: translateY(40px) scale(0.98); }
+  to   { opacity:1; transform: translateY(0) scale(1); }
+}
+
+.card:hover { background: var(--surface2); transform: translateY(-5px); z-index: 10; }
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 2px;
+  background: linear-gradient(90deg, var(--red), var(--gold2));
+  transition: left 0.55s cubic-bezier(0.16,1,0.3,1);
+  z-index: 5;
+}
+.card:hover::before { left: 0; }
+
+.card::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(20,60,140,0.18) 0%, transparent 65%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+.card:hover::after { opacity: 1; }
+
+/* ── PHOTO ── */
+.photo-wrap {
+  position: relative;
+  width: 100%;
+  height: 290px;
+  background: var(--surface2);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* Real photo styling */
+.photo-wrap img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16,1,0.3,1);
+}
+.card:hover .photo-wrap img { transform: scale(1.04); }
+
+.photo-placeholder {
+  width: 100%; height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.photo-placeholder::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(201,168,76,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,168,76,0.05) 1px, transparent 1px);
+  background-size: 36px 36px;
+  animation: driftGrid 18s linear infinite;
+}
+@keyframes driftGrid {
+  from { background-position: 0 0; }
+  to   { background-position: 36px 36px; }
+}
+
+.photo-glow {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 35%, rgba(17,60,130,0.55) 0%, transparent 70%);
+  animation: pulseGlow 4s ease-in-out infinite;
+}
+@keyframes pulseGlow { 0%,100% { opacity:0.8; } 50% { opacity:1; } }
+
+.initials-ring {
+  width: 108px; height: 108px;
+  border-radius: 50%;
+  border: 1px solid rgba(201,168,76,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  transition: border-color 0.4s, transform 0.6s cubic-bezier(0.16,1,0.3,1);
+}
+.card:hover .initials-ring { border-color: rgba(201,168,76,0.7); transform: scale(1.08); }
+.initials-ring::before {
+  content: '';
+  position: absolute; inset: 8px;
+  border-radius: 50%;
+  border: 1px solid rgba(201,168,76,0.12);
+  animation: spinRing 12s linear infinite;
+}
+@keyframes spinRing { to { transform: rotate(360deg); } }
+.initials-ring::after {
+  content: '';
+  position: absolute; inset: -14px;
+  border-radius: 50%;
+  border: 1px dashed rgba(184,49,31,0.2);
+  animation: spinRing 20s linear infinite reverse;
+}
+.initials-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.85rem;
+  font-weight: 400;
+  color: var(--gold2);
+  letter-spacing: 0.08em;
+  z-index: 1;
+  transition: color 0.3s;
+}
+.card:hover .initials-text { color: var(--gold3); }
+
+/* corner accents */
+.corner-accent { position: absolute; bottom: 0; left: 0; z-index: 3; }
+.corner-accent::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 52px; height: 2px;
+  background: linear-gradient(90deg, var(--red), transparent);
+}
+.corner-accent::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 2px; height: 52px;
+  background: linear-gradient(to top, var(--red), transparent);
+}
+.corner-accent-gold { position: absolute; top: 0; right: 0; z-index: 3; }
+.corner-accent-gold::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 36px; height: 1px;
+  background: linear-gradient(270deg, var(--gold), transparent);
+}
+.corner-accent-gold::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 1px; height: 36px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+}
+
+.photo-num {
+  position: absolute;
+  top: 14px; left: 16px;
+  font-size: 0.56rem;
+  letter-spacing: 0.25em;
+  color: var(--gold);
+  font-weight: 500;
+  z-index: 4;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+}
+.photo-tag {
+  position: absolute;
+  bottom: 14px; right: 14px;
+  font-size: 0.54rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted2);
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 5px 11px;
+  background: rgba(6,12,26,0.8);
+  backdrop-filter: blur(8px);
+  z-index: 4;
+  cursor: pointer;
+  transition: color 0.25s, border-color 0.25s, background 0.25s;
+}
+.photo-tag:hover { color: var(--gold); border-color: rgba(201,168,76,0.4); background: rgba(201,168,76,0.06); }
+
+/* ── CARD BODY ── */
+.card-body { padding: 28px 28px 0; flex: 1; }
+
+.coach-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--white);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin-bottom: 5px;
+  transition: color 0.3s;
+}
+.card:hover .coach-name { color: var(--gold3); }
+
+.coach-role {
+  font-size: 0.64rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.coach-role::before { content: ''; display: block; width: 16px; height: 1px; background: var(--red); }
+
+.coach-bio {
+  font-size: 0.84rem;
+  color: var(--muted);
+  line-height: 1.8;
+  font-weight: 300;
+  margin-bottom: 22px;
+}
+
+.focus-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 28px; }
+.focus-item {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  font-size: 0.78rem;
+  color: var(--muted);
+  transition: color 0.3s, transform 0.3s;
+}
+.card:hover .focus-item { color: #8899bb; }
+.card:hover .focus-item:nth-child(1) { transform: translateX(4px); transition-delay: 0.05s; }
+.card:hover .focus-item:nth-child(2) { transform: translateX(4px); transition-delay: 0.1s; }
+.card:hover .focus-item:nth-child(3) { transform: translateX(4px); transition-delay: 0.15s; }
+
+.focus-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; transition: transform 0.3s; }
+.card:hover .focus-dot { transform: scale(1.4); }
+.focus-item:nth-child(1) .focus-dot { background: var(--red2); }
+.focus-item:nth-child(2) .focus-dot { background: var(--gold); }
+.focus-item:nth-child(3) .focus-dot { background: var(--red); }
+
+/* ── CARD FOOTER ── */
+.card-footer {
+  margin-top: auto;
+  border-top: 1px solid var(--border);
+  padding: 18px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+.card-footer::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: -100%;
+  width: 100%; height: 1px;
+  background: linear-gradient(90deg, var(--red), var(--gold), transparent);
+  transition: left 0.6s cubic-bezier(0.16,1,0.3,1);
+}
+.card:hover .card-footer::before { left: 0; }
+
+.coach-credential { font-size: 0.71rem; color: var(--muted2); font-weight: 300; line-height: 1.6; }
+.coach-credential strong { display: block; color: var(--muted); font-weight: 400; font-size: 0.76rem; }
+
+.cta-btn {
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid rgba(201,168,76,0.35);
+  padding: 9px 18px;
+  text-decoration: none;
+  background: transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: border-color 0.3s, color 0.3s, box-shadow 0.3s;
+  flex-shrink: 0;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 500;
+  position: relative;
+  overflow: hidden;
+}
+.cta-btn::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, var(--red), var(--gold));
+  transform: translateX(-105%);
+  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+  z-index: 0;
+}
+.cta-btn span { position: relative; z-index: 1; }
+.cta-btn:hover { border-color: transparent; color: #fff; box-shadow: 0 0 24px rgba(201,168,76,0.25); }
+.cta-btn:hover::before { transform: translateX(0); }
+
+/* ── FOOTER ── */
+.page-footer {
+  border-top: 2px solid var(--red);
+  padding: 44px 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1400px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  gap: 1rem;
+  position: relative;
+  z-index: 2;
+}
+.page-footer::before {
+  content: '';
+  position: absolute;
+  top: -1px; left: 0;
+  width: 100px; height: 2px;
+  background: var(--gold);
+}
+.footer-copy { font-size: 0.67rem; color: var(--muted2); letter-spacing: 0.1em; }
+.footer-tagline {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--gold);
+}
+.footer-tagline::before { content: '— '; color: var(--red); font-style: normal; }
+
+#progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--red), var(--gold));
+  z-index: 8000;
+  width: 0%;
+  transition: width 0.1s;
+  box-shadow: 0 0 10px var(--gold-glow);
+}
+
+@media (max-width: 768px) {
+  .hero { padding: 80px 28px 60px; }
+  .section-intro, .grid { padding-left: 28px; padding-right: 28px; }
+  .page-footer { padding: 32px 28px; }
+  .grid { gap: 1px; }
+}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+<canvas id="particles"></canvas>
+
+<div id="loader">
+  <div class="loader-logo">KOIKMA</div>
+  <div class="loader-bar-wrap"><div class="loader-bar" id="loaderBar"></div></div>
+  <div class="loader-pct" id="loaderPct">0%</div>
+</div>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-label">KoIKMa Professional Trainers · Malaysia</div>
+      <div class="hero-title-wrap">
+        <h1>Coaches Who Build<span class="line2"><em>Exceptional</em> Leaders</span></h1>
+      </div>
+    </div>
+    <div class="hero-right">
+      <p class="hero-desc">Our faculty represents Malaysia's most accomplished business minds — each bringing boardroom experience, strategic depth, and a proven track record of measurable organisational transformation.</p>
+      <div class="hero-stats">
+        <div class="hstat"><span class="hstat-num" data-target="8">0</span><span class="hstat-label">Master Coaches</span></div>
+        <div class="hstat"><span class="hstat-num" data-target="25">0</span><span class="hstat-label">Avg. Yrs Exp.</span></div>
+        <div class="hstat"><span class="hstat-num" data-target="500">0</span><span class="hstat-label">Execs Coached</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</section>
+
+<div class="section-intro">
+  <div class="section-intro-line"></div>
+  <div class="section-intro-text">Our Faculty — 2026 Cohort</div>
+  <div class="section-intro-line"></div>
+</div>
+
+<main class="grid">
+
+  <!-- 1 — En Faiz Yatim (photo: faiz.png) -->
+  <article class="card">
+    <div class="photo-wrap">
+      <img src="faiz.png" alt="En Faiz Ahmad Yatim">
+      <div class="corner-accent"></div>
+      <div class="corner-accent-gold"></div>
+      <span class="photo-num">01 / 08</span>
+    </div>
+    <div class="card-body">
+      <div class="coach-name">En Faiz Ahmad Yatim</div>
+      <div class="coach-role">Digital Transformation</div>
+      <p class="coach-bio">Two decades shaping digitalisation for Malaysian cooperatives. Devotes his expertise to accelerating senior leaders through high-stakes transformation programmes.</p>
+      <div class="focus-list">
+        <div class="focus-item"><span class="focus-dot"></span>Board-Level Strategy</div>
+        <div class="focus-item"><span class="focus-dot"></span>Corporate Governance</div>
+        <div class="focus-item"><span class="focus-dot"></span>Executive Presence</div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="coach-credential"><strong>MSc, Universiti Putra Msia</strong>Director IKMa UPMITD </div>
+      <a class="cta-btn" href="#"><span>Engage</span></a>
+    </div>
+  </article>
+
+  <!-- 2 -->
+  <article class="card">
+    <div class="photo-wrap">
+      <img src="biha.png" alt="Pn Norbiha Kasmuri">
+      <div class="corner-accent"></div>
+      <div class="corner-accent-gold"></div>
+      <span class="photo-num">02 / 08</span>
+    </div>
+    <div class="card-body">
+      <div class="coach-name">Pn Norbiha Kasmuri</div>
+      <div class="coach-role">Governance Law</div>
+      <p class="coach-bio">20 years as professional speaker and legal consultant focusing on organizational governance, regulatory compliance, and strategic legal management.</p>
+      <div class="focus-list">
+        <div class="focus-item"><span class="focus-dot"></span>Corporate Law</div>
+        <div class="focus-item"><span class="focus-dot"></span>Corporate Governance</div>
+        <div class="focus-item"><span class="focus-dot"></span>Cooperative Law</div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="coach-credential"><strong>LL.M, Universiti Teknologi Mara</strong>Director IKMa PPK </div>
+      <a class="cta-btn" href="#"><span>Engage</span></a>
+    </div>
+  </article>
+
+  <!-- 3 -->
+  <article class="card">
+    <div class="photo-wrap">
+      <img src="zul.png" alt="En Zulkiflee Aspan">
+      <div class="corner-accent"></div>
+      <div class="corner-accent-gold"></div>
+      <span class="photo-num">03 / 08</span>
+    </div>
+    <div class="card-body">
+      <div class="coach-name">En Zulkiflee Aspan</div>
+      <div class="coach-role">Financial Management</div>
+      <p class="coach-bio">Financial management professional with expertise in budgeting, financial reporting, and strategic financial planning. </p>
+      <div class="focus-list">
+        <div class="focus-item"><span class="focus-dot"></span>Revenue Scaling</div>
+        <div class="focus-item"><span class="focus-dot"></span>Financial Planning</div>
+        <div class="focus-item"><span class="focus-dot"></span>Budget Strategy</div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="coach-credential"><strong>MBA, University Teknologi Mara</strong>Director, IKMa PPK</div>
+      <a class="cta-btn" href="#"><span>Engage</span></a>
+    </div>
+  </article>
+
+  <!-- 4 -->
+  <article class="card">
+    <div class="photo-wrap">
+      <img src="julizah.png" alt="Pn Julizah Sabstu">
+      <div class="corner-accent"></div>
+      <div class="corner-accent-gold"></div>
+      <span class="photo-num">04 / 08</span>
+    </div>
+    <div class="card-body">
+      <div class="coach-name">Pn Julizah Sabstu</div>
+      <div class="coach-role">Resource and Budget Management</div>
+      <p class="coach-bio">Two decades shaping narratives for Malaysian conglomerates. Experienced finance professional with a strong background in financial analysis, internal controls, and organizational planning. </p>
+      <div class="focus-list">
+        <div class="focus-item"><span class="focus-dot"></span>Resource Control</div>
+        <div class="focus-item"><span class="focus-dot"></span>Financial Solution</div>
+        <div class="focus-item"><span class="focus-dot"></span>Budget Management</div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="coach-credential"><strong>MAcc, UKM Msia</strong>Assosiate, IKMa</div>
+      <a class="cta-btn" href="#"><span>Engage</span></a>
+    </div>
+  </article>
+
+  <!-- 5 -->
+  <article class="card">
+    <div class="photo-wrap">
+      <img src="faruqal.png" alt="faruqal">
+      <div class="corner-accent"></div>
+      <div class="corner-accent-gold"></div>
+      <span class="photo-num">05 / 08</span>
+    </div>
+    <div class="card-body">
+      <div class="coach-name">Faruqal Farisi Juhari</div>
+      <div class="coach-role">Financial Leadership Coach</div>
+      <p class="coach-bio">Ex-CFO with 22 years across private equity, banking, and regional M&A. Guides finance leaders through capital strategy, P&L discipline, and board-level readiness.</p>
+      <div class="focus-list">
+        <div class="focus-item"><span class="focus-dot"></span>Capital Strategy</div>
+        <div class="focus-item"><span class="focus-dot"></span>M&A Readiness</div>
+        <div class="focus-item"><span class="focus-dot"></span>CFO Coaching</div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="coach-credential"><strong>CFA Charterholder · FCPA</strong>Ex-CFO, CIMB Group</div>
+      <a class="cta-btn" href="#"><span>Engage</span></a>
+    </div>
+  </article>
+
+  <!-- 6 -->
+  <article class="card">
+    <div class="photo-wrap">
+      <img src="syida.png" alt="syida">
+      <div class="corner-accent"></div>
+      <div class="corner-accent-gold"></div>
+      <span class="photo-num">06 / 08</span>
+    </div>
+    <div class="card-body">
+      <div class="coach-name">Nor Syahidah Ahamad</div>
+      <div class="coach-role">High-Performance Mindset Coach</div>
+      <p class="coach-bio">Psychologist-turned-executive coach. Merges cognitive behavioural frameworks with peak performance science to unlock leaders' full mental and strategic potential.</p>
+      <div class="focus-list">
+        <div class="focus-item"><span class="focus-dot"></span>Mindset & Resilience</div>
+        <div class="focus-item"><span class="focus-dot"></span>Decision-Making Under Pressure</div>
+        <div class="focus-item"><span class="focus-dot"></span>Leadership Psychology</div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="coach-credential"><strong>PhD Psychology, UM</strong>ICF Professional Certified Coach</div>
+      <a class="cta-btn" href="#"><span>Engage</span></a>
+    </div>
+  </article>
+
+  <!-- 7 -->
+  <article class="card">
+    <div class="photo-wrap">
+      <img src="ika.png" alt="ika">
+      <div class="corner-accent"></div>
+      <div class="corner-accent-gold"></div>
+      <span class="photo-num">07 / 08</span>
+    </div>
+    <div class="card-body">
+      <div class="coach-name">Siti Zulaikha Adnan</div>
+      <div class="coach-role">Soft Skill Advisor</div>
+      <p class="coach-bio">Led skill transformation for two of Malaysia's top companies. Partners with leadership teams to build attitude organisations, business minded, and future-fit operating structures.</p>
+      <div class="focus-list">
+        <div class="focus-item"><span class="focus-dot"></span>Mental Strategy</div>
+        <div class="focus-item"><span class="focus-dot"></span>Customer Centric Vision</div>
+        <div class="focus-item"><span class="focus-dot"></span>Business Attitude Alignment</div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="coach-credential"><strong>MBA, INSEAD</strong>Ex-CDO, Telekom Malaysia</div>
+      <a class="cta-btn" href="#"><span>Engage</span></a>
+    </div>
+  </article>
+
+  <!-- 8 -->
+  <article class="card">
+    <div class="photo-wrap">
+      <img src="faisal.png" alt="faisal">
+      <div class="corner-accent"></div>
+      <div class="corner-accent-gold"></div>
+      <span class="photo-num">08 / 08</span>
+    </div>
+    <div class="card-body">
+      <div class="coach-name">Mohammad Faisal Abd Razak</div>
+      <div class="coach-role">Sales Excellence Coach</div>
+      <p class="coach-bio">Built and led sales teams generating over RM 2 billion in cumulative revenue. Coaches B2B sales leaders, enterprise account teams, and regional commercial directors.</p>
+      <div class="focus-list">
+        <div class="focus-item"><span class="focus-dot"></span>Enterprise Sales Leadership</div>
+        <div class="focus-item"><span class="focus-dot"></span>Key Account Management</div>
+        <div class="focus-item"><span class="focus-dot"></span>Commercial Strategy</div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="coach-credential"><strong>BBA, UiTM · Certified Sales Leader</strong>RM 2B+ Revenue Track Record</div>
+      <a class="cta-btn" href="#"><span>Engage</span></a>
+    </div>
+  </article>
+
+</main>
+
+<footer class="page-footer">
+  <span class="footer-copy">© 2026 KoIKMa Professional Coaching · Kuala Lumpur, Malaysia</span>
+  <span class="footer-tagline">Investing in leaders who move nations.</span>
+</footer>
+
+<script>
+/* ── LOADER ── */
+const loader = document.getElementById('loader');
+const bar    = document.getElementById('loaderBar');
+const pct    = document.getElementById('loaderPct');
+let p = 0;
+const iv = setInterval(() => {
+  p += Math.random() * 18;
+  if (p > 100) p = 100;
+  bar.style.width = p + '%';
+  pct.textContent = Math.floor(p) + '%';
+  if (p >= 100) { clearInterval(iv); setTimeout(() => loader.classList.add('gone'), 300); }
+}, 80);
+
+/* ── SCROLL PROGRESS ── */
+const prog = document.getElementById('progress');
+window.addEventListener('scroll', () => {
+  const s = document.documentElement;
+  prog.style.width = (s.scrollTop / (s.scrollHeight - s.clientHeight) * 100) + '%';
+});
+
+/* ── PARTICLES ── */
+const canvas = document.getElementById('particles');
+const ctx    = canvas.getContext('2d');
+let W, H;
+const dots   = [];
+function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+resize();
+window.addEventListener('resize', resize);
+const COLORS = ['rgba(201,168,76,','rgba(184,49,31,','rgba(30,80,180,'];
+for (let i = 0; i < 70; i++) {
+  dots.push({ x: Math.random()*1400, y: Math.random()*2400, r: Math.random()*1.2+0.3,
+    vx: (Math.random()-0.5)*0.18, vy: (Math.random()-0.5)*0.15,
+    c: COLORS[Math.floor(Math.random()*COLORS.length)], o: Math.random()*0.5+0.15 });
+}
+function drawParticles() {
+  ctx.clearRect(0,0,W,H);
+  dots.forEach(d => {
+    d.x+=d.vx; d.y+=d.vy;
+    if(d.x<0)d.x=W; if(d.x>W)d.x=0; if(d.y<0)d.y=H; if(d.y>H)d.y=0;
+    ctx.beginPath(); ctx.arc(d.x,d.y,d.r,0,Math.PI*2);
+    ctx.fillStyle=d.c+d.o+')'; ctx.fill();
+  });
+  requestAnimationFrame(drawParticles);
+}
+drawParticles();
+
+/* ── SCROLL REVEAL ── */
+const cards = document.querySelectorAll('.card');
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } });
+}, { threshold: 0.1 });
+cards.forEach(c => io.observe(c));
+
+/* ── COUNTERS ── */
+function animCounter(el) {
+  const target = +el.dataset.target;
+  let current = 0;
+  const step = target / 40;
+  const t = setInterval(() => {
+    current += step;
+    if (current >= target) { current = target; clearInterval(t); }
+    el.textContent = Math.floor(current) + (target > 8 ? '+' : '');
+  }, 35);
+}
+const counters = document.querySelectorAll('.hstat-num[data-target]');
+const cio = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ animCounter(e.target); cio.unobserve(e.target); } });
+}, { threshold: 0.5 });
+counters.forEach(c => cio.observe(c));
+</script>
+</body>
+</html>
