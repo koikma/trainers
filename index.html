@@ -241,7 +241,7 @@ body::after {
 .grid {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 70px 120px;
+  padding: 0 70px 60px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 2px;
@@ -249,6 +249,19 @@ body::after {
   position: relative;
   z-index: 2;
 }
+
+.section-divider {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 50px 70px 40px;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  z-index: 2;
+  position: relative;
+}
+.section-divider-line { flex: 1; height: 0.5px; background: var(--border); }
+.section-divider-text { font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--muted2); white-space: nowrap; }
 
 /* ── CARD ── */
 .card {
@@ -309,7 +322,6 @@ body::after {
   flex-shrink: 0;
 }
 
-/* Real photo styling */
 .photo-wrap img {
   width: 100%; height: 100%;
   object-fit: cover;
@@ -385,7 +397,6 @@ body::after {
 }
 .card:hover .initials-text { color: var(--gold3); }
 
-/* corner accents */
 .corner-accent { position: absolute; bottom: 0; left: 0; z-index: 3; }
 .corner-accent::before {
   content: '';
@@ -599,6 +610,7 @@ body::after {
 @media (max-width: 768px) {
   .hero { padding: 80px 28px 60px; }
   .section-intro, .grid { padding-left: 28px; padding-right: 28px; }
+  .section-divider { padding-left: 28px; padding-right: 28px; }
   .page-footer { padding: 32px 28px; }
   .grid { gap: 1px; }
 }
@@ -626,7 +638,7 @@ body::after {
     <div class="hero-right">
       <p class="hero-desc">Our faculty represents Malaysia's most accomplished business minds — each bringing boardroom experience, strategic depth, and a proven track record of measurable organisational transformation.</p>
       <div class="hero-stats">
-        <div class="hstat"><span class="hstat-num" data-target="8">0</span><span class="hstat-label">Master Coaches</span></div>
+        <div class="hstat"><span class="hstat-num" data-target="16">0</span><span class="hstat-label">Master Coaches</span></div>
         <div class="hstat"><span class="hstat-num" data-target="25">0</span><span class="hstat-label">Avg. Yrs Exp.</span></div>
         <div class="hstat"><span class="hstat-num" data-target="500">0</span><span class="hstat-label">Execs Coached</span></div>
       </div>
@@ -643,13 +655,13 @@ body::after {
 
 <main class="grid">
 
-  <!-- 1 — En Faiz Yatim (photo: faiz.png) -->
+  <!-- 1 -->
   <article class="card">
     <div class="photo-wrap">
       <img src="faiz.png" alt="En Faiz Ahmad Yatim">
       <div class="corner-accent"></div>
       <div class="corner-accent-gold"></div>
-      <span class="photo-num">01 / 08</span>
+      <span class="photo-num">01 / 16</span>
     </div>
     <div class="card-body">
       <div class="coach-name">En Faiz Ahmad Yatim</div>
@@ -662,7 +674,7 @@ body::after {
       </div>
     </div>
     <div class="card-footer">
-      <div class="coach-credential"><strong>MSc, Universiti Putra Msia</strong>Director IKMa UPMITD </div>
+      <div class="coach-credential"><strong>MSc, Universiti Putra Msia</strong>Director IKMa UPMITD</div>
       <a class="cta-btn" href="#"><span>Engage</span></a>
     </div>
   </article>
@@ -673,7 +685,7 @@ body::after {
       <img src="biha.png" alt="Pn Norbiha Kasmuri">
       <div class="corner-accent"></div>
       <div class="corner-accent-gold"></div>
-      <span class="photo-num">02 / 08</span>
+      <span class="photo-num">02 / 16</span>
     </div>
     <div class="card-body">
       <div class="coach-name">Pn Norbiha Kasmuri</div>
@@ -686,7 +698,7 @@ body::after {
       </div>
     </div>
     <div class="card-footer">
-      <div class="coach-credential"><strong>LL.M, Universiti Teknologi Mara</strong>Director IKMa PPK </div>
+      <div class="coach-credential"><strong>LL.M, Universiti Teknologi Mara</strong>Director IKMa PPK</div>
       <a class="cta-btn" href="#"><span>Engage</span></a>
     </div>
   </article>
@@ -697,12 +709,12 @@ body::after {
       <img src="zul.png" alt="En Zulkiflee Aspan">
       <div class="corner-accent"></div>
       <div class="corner-accent-gold"></div>
-      <span class="photo-num">03 / 08</span>
+      <span class="photo-num">03 / 16</span>
     </div>
     <div class="card-body">
       <div class="coach-name">En Zulkiflee Aspan</div>
       <div class="coach-role">Financial Management</div>
-      <p class="coach-bio">Financial management professional with expertise in budgeting, financial reporting, and strategic financial planning. </p>
+      <p class="coach-bio">Financial management professional with expertise in budgeting, financial reporting, and strategic financial planning.</p>
       <div class="focus-list">
         <div class="focus-item"><span class="focus-dot"></span>Revenue Scaling</div>
         <div class="focus-item"><span class="focus-dot"></span>Financial Planning</div>
@@ -721,12 +733,12 @@ body::after {
       <img src="julizah.png" alt="Pn Julizah Sabstu">
       <div class="corner-accent"></div>
       <div class="corner-accent-gold"></div>
-      <span class="photo-num">04 / 08</span>
+      <span class="photo-num">04 / 16</span>
     </div>
     <div class="card-body">
       <div class="coach-name">Pn Julizah Sabstu</div>
       <div class="coach-role">Resource and Budget Management</div>
-      <p class="coach-bio">Two decades shaping narratives for Malaysian conglomerates. Experienced finance professional with a strong background in financial analysis, internal controls, and organizational planning. </p>
+      <p class="coach-bio">Experienced finance professional with a strong background in financial analysis, internal controls, and organizational planning for Malaysian conglomerates.</p>
       <div class="focus-list">
         <div class="focus-item"><span class="focus-dot"></span>Resource Control</div>
         <div class="focus-item"><span class="focus-dot"></span>Financial Solution</div>
@@ -734,7 +746,7 @@ body::after {
       </div>
     </div>
     <div class="card-footer">
-      <div class="coach-credential"><strong>MAcc, UKM Msia</strong>Assosiate, IKMa</div>
+      <div class="coach-credential"><strong>MAcc, UKM Msia</strong>Associate, IKMa</div>
       <a class="cta-btn" href="#"><span>Engage</span></a>
     </div>
   </article>
@@ -742,10 +754,10 @@ body::after {
   <!-- 5 -->
   <article class="card">
     <div class="photo-wrap">
-      <img src="faruqal.png" alt="faruqal">
+      <img src="faruqal.png" alt="Faruqal Farisi Juhari">
       <div class="corner-accent"></div>
       <div class="corner-accent-gold"></div>
-      <span class="photo-num">05 / 08</span>
+      <span class="photo-num">05 / 16</span>
     </div>
     <div class="card-body">
       <div class="coach-name">Faruqal Farisi Juhari</div>
@@ -766,10 +778,10 @@ body::after {
   <!-- 6 -->
   <article class="card">
     <div class="photo-wrap">
-      <img src="syida.png" alt="syida">
+      <img src="syida.png" alt="Nor Syahidah Ahamad">
       <div class="corner-accent"></div>
       <div class="corner-accent-gold"></div>
-      <span class="photo-num">06 / 08</span>
+      <span class="photo-num">06 / 16</span>
     </div>
     <div class="card-body">
       <div class="coach-name">Nor Syahidah Ahamad</div>
@@ -790,10 +802,10 @@ body::after {
   <!-- 7 -->
   <article class="card">
     <div class="photo-wrap">
-      <img src="ika.png" alt="ika">
+      <img src="ika.png" alt="Siti Zulaikha Adnan">
       <div class="corner-accent"></div>
       <div class="corner-accent-gold"></div>
-      <span class="photo-num">07 / 08</span>
+      <span class="photo-num">07 / 16</span>
     </div>
     <div class="card-body">
       <div class="coach-name">Siti Zulaikha Adnan</div>
@@ -814,10 +826,10 @@ body::after {
   <!-- 8 -->
   <article class="card">
     <div class="photo-wrap">
-      <img src="faisal.png" alt="faisal">
+      <img src="faisal.png" alt="Mohammad Faisal Abd Razak">
       <div class="corner-accent"></div>
       <div class="corner-accent-gold"></div>
-      <span class="photo-num">08 / 08</span>
+      <span class="photo-num">08 / 16</span>
     </div>
     <div class="card-body">
       <div class="coach-name">Mohammad Faisal Abd Razak</div>
@@ -831,6 +843,222 @@ body::after {
     </div>
     <div class="card-footer">
       <div class="coach-credential"><strong>BBA, UiTM · Certified Sales Leader</strong>RM 2B+ Revenue Track Record</div>
+      <a class="cta-btn" href="#"><span>Engage</span></a>
+    </div>
+  </article>
+
+  <!-- 9 — NEW -->
+  <article class="card">
+    <div class="photo-wrap">
+      <div class="photo-placeholder">
+        <div class="photo-glow"></div>
+        <div class="initials-ring"><span class="initials-text">RA</span></div>
+      </div>
+      <div class="corner-accent"></div>
+      <div class="corner-accent-gold"></div>
+      <span class="photo-num">09 / 16</span>
+    </div>
+    <div class="card-body">
+      <div class="coach-name">Rossita Abd Hamid</div>
+      <div class="coach-role">Human Capital Strategy</div>
+      <p class="coach-bio">Former Group CHRO with 24 years shaping talent ecosystems across GLCs and government-linked agencies. Renowned for building high-retention cultures in complex public-sector environments.</p>
+      <div class="focus-list">
+        <div class="focus-item"><span class="focus-dot"></span>Talent Architecture</div>
+        <div class="focus-item"><span class="focus-dot"></span>Succession Planning</div>
+        <div class="focus-item"><span class="focus-dot"></span>Organisational Culture</div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="coach-credential"><strong>MSc HRM, Universiti Malaya</strong>Ex-CHRO, Perbadanan Nasional</div>
+      <a class="cta-btn" href="#"><span>Engage</span></a>
+    </div>
+  </article>
+
+  <!-- 10 — NEW -->
+  <article class="card">
+    <div class="photo-wrap">
+      <div class="photo-placeholder">
+        <div class="photo-glow"></div>
+        <div class="initials-ring"><span class="initials-text">KH</span></div>
+      </div>
+      <div class="corner-accent"></div>
+      <div class="corner-accent-gold"></div>
+      <span class="photo-num">10 / 16</span>
+    </div>
+    <div class="card-body">
+      <div class="coach-name">Khairul Hafiz Ramli</div>
+      <div class="coach-role">Risk & Compliance Advisory</div>
+      <p class="coach-bio">Seasoned risk officer with 19 years spanning Islamic finance, insurance, and capital markets. Helps boards institutionalise robust enterprise risk frameworks aligned with BNM and SC guidelines.</p>
+      <div class="focus-list">
+        <div class="focus-item"><span class="focus-dot"></span>Enterprise Risk Management</div>
+        <div class="focus-item"><span class="focus-dot"></span>Regulatory Compliance</div>
+        <div class="focus-item"><span class="focus-dot"></span>Islamic Finance Governance</div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="coach-credential"><strong>LLB · Certified Risk Professional</strong>Ex-CRO, Takaful Malaysia</div>
+      <a class="cta-btn" href="#"><span>Engage</span></a>
+    </div>
+  </article>
+
+  <!-- 11 — NEW -->
+  <article class="card">
+    <div class="photo-wrap">
+      <div class="photo-placeholder">
+        <div class="photo-glow"></div>
+        <div class="initials-ring"><span class="initials-text">NI</span></div>
+      </div>
+      <div class="corner-accent"></div>
+      <div class="corner-accent-gold"></div>
+      <span class="photo-num">11 / 16</span>
+    </div>
+    <div class="card-body">
+      <div class="coach-name">Norzaharah Ibrahim</div>
+      <div class="coach-role">Strategic Communication</div>
+      <p class="coach-bio">Two decades in corporate communications and public affairs for government ministries and Fortune 500 subsidiaries. Specialises in crisis narrative management and C-suite media readiness.</p>
+      <div class="focus-list">
+        <div class="focus-item"><span class="focus-dot"></span>Crisis Communication</div>
+        <div class="focus-item"><span class="focus-dot"></span>Media & Public Affairs</div>
+        <div class="focus-item"><span class="focus-dot"></span>Executive Messaging</div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="coach-credential"><strong>MA Communication, UM</strong>Senior Fellow, Institut Tadbiran Awam</div>
+      <a class="cta-btn" href="#"><span>Engage</span></a>
+    </div>
+  </article>
+
+  <!-- 12 — NEW -->
+  <article class="card">
+    <div class="photo-wrap">
+      <div class="photo-placeholder">
+        <div class="photo-glow"></div>
+        <div class="initials-ring"><span class="initials-text">AM</span></div>
+      </div>
+      <div class="corner-accent"></div>
+      <div class="corner-accent-gold"></div>
+      <span class="photo-num">12 / 16</span>
+    </div>
+    <div class="card-body">
+      <div class="coach-name">Azrul Mizan Mohd Noor</div>
+      <div class="coach-role">Operations & Supply Chain</div>
+      <p class="coach-bio">Built end-to-end supply chain frameworks for three of Malaysia's largest manufacturing groups. Coaches operations directors on lean transformation, vendor management, and cross-border logistics optimisation.</p>
+      <div class="focus-list">
+        <div class="focus-item"><span class="focus-dot"></span>Lean Manufacturing</div>
+        <div class="focus-item"><span class="focus-dot"></span>Supply Chain Resilience</div>
+        <div class="focus-item"><span class="focus-dot"></span>Operational Excellence</div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="coach-credential"><strong>MEng Industrial, UTM</strong>Ex-COO, Proton Holdings</div>
+      <a class="cta-btn" href="#"><span>Engage</span></a>
+    </div>
+  </article>
+
+  <!-- 13 — NEW -->
+  <article class="card">
+    <div class="photo-wrap">
+      <div class="photo-placeholder">
+        <div class="photo-glow"></div>
+        <div class="initials-ring"><span class="initials-text">SY</span></div>
+      </div>
+      <div class="corner-accent"></div>
+      <div class="corner-accent-gold"></div>
+      <span class="photo-num">13 / 16</span>
+    </div>
+    <div class="card-body">
+      <div class="coach-name">Sharifah Yusra Al-Yahya</div>
+      <div class="coach-role">Cooperative Development</div>
+      <p class="coach-bio">Pioneered cooperative growth models for rural and agro-based sectors across Peninsular Malaysia. Her field-to-boardroom approach has transformed over 60 cooperative boards into commercially viable entities.</p>
+      <div class="focus-list">
+        <div class="focus-item"><span class="focus-dot"></span>Cooperative Governance</div>
+        <div class="focus-item"><span class="focus-dot"></span>Rural Enterprise Strategy</div>
+        <div class="focus-item"><span class="focus-dot"></span>Member Engagement</div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="coach-credential"><strong>PhD Development Studies, UPM</strong>Principal Advisor, SKM Malaysia</div>
+      <a class="cta-btn" href="#"><span>Engage</span></a>
+    </div>
+  </article>
+
+  <!-- 14 — NEW -->
+  <article class="card">
+    <div class="photo-wrap">
+      <div class="photo-placeholder">
+        <div class="photo-glow"></div>
+        <div class="initials-ring"><span class="initials-text">HZ</span></div>
+      </div>
+      <div class="corner-accent"></div>
+      <div class="corner-accent-gold"></div>
+      <span class="photo-num">14 / 16</span>
+    </div>
+    <div class="card-body">
+      <div class="coach-name">Hafizuddin Zainal Abidin</div>
+      <div class="coach-role">Innovation & Technology Leadership</div>
+      <p class="coach-bio">Technology strategist who has led digital product launches across fintech, govtech, and e-commerce. Equips non-technical executives with the literacy and frameworks to lead AI-driven organisations.</p>
+      <div class="focus-list">
+        <div class="focus-item"><span class="focus-dot"></span>AI & Emerging Technology</div>
+        <div class="focus-item"><span class="focus-dot"></span>Product-Led Growth</div>
+        <div class="focus-item"><span class="focus-dot"></span>Tech-Literate Leadership</div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="coach-credential"><strong>MSc Computer Science, UTM</strong>Founding CTO, myGovTech</div>
+      <a class="cta-btn" href="#"><span>Engage</span></a>
+    </div>
+  </article>
+
+  <!-- 15 — NEW -->
+  <article class="card">
+    <div class="photo-wrap">
+      <div class="photo-placeholder">
+        <div class="photo-glow"></div>
+        <div class="initials-ring"><span class="initials-text">FO</span></div>
+      </div>
+      <div class="corner-accent"></div>
+      <div class="corner-accent-gold"></div>
+      <span class="photo-num">15 / 16</span>
+    </div>
+    <div class="card-body">
+      <div class="coach-name">Faridah Omar Bakri</div>
+      <div class="coach-role">ESG & Sustainable Leadership</div>
+      <p class="coach-bio">Malaysia's foremost ESG implementation coach for public-listed companies and government agencies. Guides boards on embedding sustainability into strategy, reporting, and long-term stakeholder value creation.</p>
+      <div class="focus-list">
+        <div class="focus-item"><span class="focus-dot"></span>ESG Strategy & Reporting</div>
+        <div class="focus-item"><span class="focus-dot"></span>Sustainable Finance</div>
+        <div class="focus-item"><span class="focus-dot"></span>Stakeholder Governance</div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="coach-credential"><strong>MBA Sustainability, NUS</strong>Board Advisor, Bursa Malaysia ESG Panel</div>
+      <a class="cta-btn" href="#"><span>Engage</span></a>
+    </div>
+  </article>
+
+  <!-- 16 — NEW -->
+  <article class="card">
+    <div class="photo-wrap">
+      <div class="photo-placeholder">
+        <div class="photo-glow"></div>
+        <div class="initials-ring"><span class="initials-text">MR</span></div>
+      </div>
+      <div class="corner-accent"></div>
+      <div class="corner-accent-gold"></div>
+      <span class="photo-num">16 / 16</span>
+    </div>
+    <div class="card-body">
+      <div class="coach-name">Mohd Rashdan Suhaimi</div>
+      <div class="coach-role">Strategic Negotiation & Influence</div>
+      <p class="coach-bio">Veteran diplomat and commercial negotiator with postings across ASEAN, the Middle East, and Brussels. Trains senior executives in high-stakes negotiation, cross-cultural influence, and multilateral deal structuring.</p>
+      <div class="focus-list">
+        <div class="focus-item"><span class="focus-dot"></span>High-Stakes Negotiation</div>
+        <div class="focus-item"><span class="focus-dot"></span>Cross-Cultural Leadership</div>
+        <div class="focus-item"><span class="focus-dot"></span>Diplomatic Intelligence</div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="coach-credential"><strong>MA International Relations, LSE</strong>Former Senior Diplomat, Wisma Putra</div>
       <a class="cta-btn" href="#"><span>Engage</span></a>
     </div>
   </article>
